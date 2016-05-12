@@ -51,6 +51,7 @@ A PHP SDK for [Cachet](https://cachethq.io/), providing a full functionality acc
     * [indexSubscribers](#subscribers-index)
     * [searchSubscriber](#subscribers-search)
     * [storeSubscriber](#subscribers-store)
+#### [Exceptions](#exceptions)
 
 ## Cachet Client
 For create a cachet client you need an endpoint and a token, those data are available on your Cachet site.
@@ -945,3 +946,19 @@ The store method allows you to add a point.
       'value' => 100
     ];
 
+
+----------
+----------
+----------
+
+### Exceptions
+
+The exceptions are all based on GuzzleHttp except one, that is used for InvalidResponse
+
+  * CachetSDKConnectException
+  * CachetSDKServerException
+  * CachetSDKClientException
+  * CachetSDKTooManyRedirectsException
+  * CachetSDKInvalidResponseException
+
+For more information how to catch, [just see the call method in the CachetClient](http://cachetsdk.damianopetrungaro.com/source-class-Damianopetrungaro.CachetSDK.CachetClient.html#53-74)
