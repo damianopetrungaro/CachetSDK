@@ -8,5 +8,4 @@ namespace Damianopetrungaro\CachetSDK\Exceptions;
 
 interface CachetSDKExceptionInterface
 {
-
 }

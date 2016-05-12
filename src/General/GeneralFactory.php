@@ -6,20 +6,19 @@
 
 namespace Damianopetrungaro\CachetSDK\General;
 
-
 use Damianopetrungaro\CachetSDK\CachetClient;
 
 class GeneralFactory
 {
-	/**
-	 * Build an object
-	 *
-	 * @param $client
-	 *
-	 * @return object GeneralActions
-	 */
-	public static function build(CachetClient $client)
-	{
-		return new GeneralActions($client);
-	}
+    /**
+     * Build an object.
+     *
+     * @param $client
+     *
+     * @return object GeneralActions
+     */
+    public static function build(CachetClient $client)
+    {
+        return new GeneralActions($client);
+    }
 }
