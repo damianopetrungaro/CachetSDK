@@ -53,6 +53,23 @@ A PHP SDK for [Cachet](https://cachethq.io/), providing a full functionality acc
     * [storeSubscriber](#subscribers-store)
 * [Exceptions](#exceptions)
 
+
+## Installation
+
+Add `damianopetrungaro/cachet-sdk` to `composer.json`.
+
+```json
+   "damianopetrungaro/cachet-sdk": "^0.8.0"
+```
+    
+Run `composer update` to pull down the latest version of CachetSDK.
+
+Or install it directly from the command line using
+
+```shell
+composer require "damianopetrungaro/cachet-sdk"
+```
+
 ## Cachet Client
 For create a cachet client you need an endpoint and a token, those data are available on your Cachet site.
 
