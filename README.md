@@ -195,7 +195,7 @@ The search method allows you to get one or more component from cachet searching 
 
 ###### $cache (bool - default = true) = Use cache method.
 
-###### $limit (int - default = 1) = Number of components to return
+###### $limit (int - default = 1) = Number of components to return.
 
 ###### $num (int - default = 1000) = Number of component to return from a single page (uses cachet pagination).
 
@@ -214,7 +214,7 @@ The store method allows you to add a component.
     $component = $componentManager->storeComponent($component)
 ```
 
-###### $component (array) = For required params read the [Cachet Doc](https://docs.cachethq.io/docs)
+###### $component (array) = For required params read the [Cachet Doc](https://docs.cachethq.io/docs).
 
     $sampleArray = [
         'name' => 'component name',
@@ -241,7 +241,7 @@ The update method allows you to update a specific component.
 ```
 
 ###### $id (int) = Component ID.
-###### $component (array) = For required params read the [Cachet Doc](https://docs.cachethq.io/docs)
+###### $component (array) = For required params read the [Cachet Doc](https://docs.cachethq.io/docs).
 
     $sampleArray = [
         'name' => 'component name',
@@ -355,7 +355,7 @@ The search method allows you to get one or more group from cachet searching by k
 
 ###### $cache (bool - default = true) = Use cache method.
 
-###### $limit (int - default = 1) = Number of groups to return
+###### $limit (int - default = 1) = Number of groups to return.
 
 ###### $num (int - default = 1000) = Number of group to return from a single page (uses cachet pagination).
 
@@ -374,7 +374,7 @@ The store method allows you to add a group.
     $group = $groupManager->storeGroup($group)
 ```
 
-###### $group (array) = For required params read the [Cachet Doc](https://docs.cachethq.io/docs)
+###### $group (array) = For required params read the [Cachet Doc](https://docs.cachethq.io/docs).
 
     $sampleArray = [
       'name' => 'new group name',
@@ -396,8 +396,8 @@ The update method allows you to update a specific group.
     $group = $groupManager->updateGroup($id, $group)
 ```
 
-###### $id (int) = Group ID
-###### $group (array) = For required params read the [Cachet Doc](https://docs.cachethq.io/docs)
+###### $id (int) = Group ID.
+###### $group (array) = For required params read the [Cachet Doc](https://docs.cachethq.io/docs).
 
     $sampleArray = [
       'name' => 'new group name',
@@ -508,7 +508,7 @@ The search method allows you to get one or more incident from cachet searching b
 
 ###### $cache (bool - default = true) = Use cache method.
 
-###### $limit (int - default = 1) = Number of incidents to return
+###### $limit (int - default = 1) = Number of incidents to return.
 
 ###### $num (int - default = 1000) = Number of incident to return from a single page (uses cachet pagination).
 
@@ -527,7 +527,7 @@ The store method allows you to add a incident.
     $incident = $incidentManager->storeIncident($incident)
 ```
 
-###### $incident (array) = For required params read the [Cachet Doc](https://docs.cachethq.io/docs)
+###### $incident (array) = For required params read the [Cachet Doc](https://docs.cachethq.io/docs).
 
     $sampleArray = [
       'name' => 'incident name',
@@ -553,8 +553,8 @@ The update method allows you to update a specific incident.
     $incident = $incidentManager->updateIncident($id, $incident)
 ```
 
-###### $id (int) = Incident ID
-###### $incident (array) = For required params read the [Cachet Doc](https://docs.cachethq.io/docs)
+###### $id (int) = Incident ID.
+###### $incident (array) = For required params read the [Cachet Doc](https://docs.cachethq.io/docs).
 
     $sampleArray = [
       'name' => 'incident name',
@@ -668,7 +668,7 @@ The search method allows you to get one or more metric from cachet searching by 
 
 ###### $cache (bool - default = true) = Use cache method.
 
-###### $limit (int - default = 1) = Number of metrics to return
+###### $limit (int - default = 1) = Number of metrics to return.
 
 ###### $num (int - default = 1000) = Number of metric to return from a single page (uses cachet pagination).
 
@@ -687,7 +687,7 @@ The store method allows you to add a metric.
     $metric = $metricManager->storeMetric($metric)
 ```
 
-###### $metric (array) = For required params read the [Cachet Doc](https://docs.cachethq.io/docs)
+###### $metric (array) = For required params read the [Cachet Doc](https://docs.cachethq.io/docs).
 
     $sampleArray = [
       'name' => 'metric name',
@@ -789,7 +789,7 @@ The search method allows you to get one or more subscriber from cachet searching
 
 ###### $cache (bool - default = true) = Use cache method.
 
-###### $limit (int - default = 1) = Number of subscribers to return
+###### $limit (int - default = 1) = Number of subscribers to return.
 
 ###### $num (int - default = 1000) = Number of subscriber to return from a single page (uses cachet pagination).
 
@@ -808,7 +808,7 @@ The store method allows you to add a subscriber.
     $subscriber = $subscriberManager->storeSubscriber($subscriber)
 ```
 
-###### $subscriber (array) = For required params read the [Cachet Doc](https://docs.cachethq.io/docs)
+###### $subscriber (array) = For required params read the [Cachet Doc](https://docs.cachethq.io/docs).
 
     $sampleArray = [
       'name' => 'subscriber name',
@@ -848,7 +848,7 @@ Anyway you can instance it manually.
     $cachedPoints = $pointManager->cachePoints($metricId, $num, $page)
 ```
 
-###### $metricId (int) = Metric ID
+###### $metricId (int) = Metric ID.
 
 ###### $num (int - default = 1000) = Number of point to return from a single page (uses cachet pagination).
 
@@ -867,7 +867,7 @@ The delete method allows you to delete a specific point from cachet.
     $deletePoint = $pointManager->deletePoint($metricId, $id);
 ```
 
-###### $metricId (int) = Metric ID
+###### $metricId (int) = Metric ID.
 
 ###### $id (int) = Point ID.
 
@@ -884,7 +884,7 @@ The index method allows you to get a list of point from cachet.
     $indexPoints = $pointManager->indexPoints($metricId, $num, $page, $cache)
 ```
 
-###### $metricId (int) = Metric ID
+###### $metricId (int) = Metric ID.
 
 ###### $num (int - default = 1000) = Number of point to return from a single page (uses cachet pagination).
 
@@ -908,7 +908,7 @@ The search method allows you to get one or more point from cachet searching by k
     $points = $pointManager->searchPoints($metricId, $search, $by, $cache, $limit, $num, $page)
 ```
 
-###### $metricId (int) = Metric ID
+###### $metricId (int) = Metric ID.
 
 ###### $search (mixed) = Value to find.
 
@@ -916,7 +916,7 @@ The search method allows you to get one or more point from cachet searching by k
 
 ###### $cache (bool - default = true) = Use cache method.
 
-###### $limit (int - default = 1) = Number of points to return
+###### $limit (int - default = 1) = Number of points to return.
 
 ###### $num (int - default = 1000) = Number of point to return from a single page (uses cachet pagination).
 
@@ -935,18 +935,11 @@ The store method allows you to add a point.
     $point = $pointManager->storePoint($metricId, $point)
 ```
 
-###### $metricId (int) = Metric ID
+###### $metricId (int) = Metric ID.
 
-###### $point (array) = For required params read the [Cachet Doc](https://docs.cachethq.io/docs)
+###### $point (array) = For required params read the [Cachet Doc](https://docs.cachethq.io/docs).
 
     $sampleArray = [
-      'name' => 'point name',
-      'suffix' => 'point suffix',
-      'description' => 'point description',
-      'default_value' => 100,
-      'display_chart' => 1,
-      'calc_type' => 1,
-      'default_view' => 1,
-      'threshold' => 1,
+      'value' => 100
     ];
 
