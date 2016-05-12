@@ -1,0 +1,29 @@
+{
+  "name": "damianopetrungaro/cachet-sdk",
+  "type": "library",
+  "description": "A PHP SDK for Cachet, providing a full functionality access.",
+  "require": {
+    "guzzlehttp/guzzle": "^6.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "@stable"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/damianopetrungaro/CachetSDK",
+  "authors": [
+    {
+      "name": "Damiano Petrungaro",
+      "email": "damianopetrungaro@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Damianopetrungaro\\CachetSDK\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Damianopetrungaro\\CachetSDKTest\\": "tests/Unit"
+    }
+  }
+}
