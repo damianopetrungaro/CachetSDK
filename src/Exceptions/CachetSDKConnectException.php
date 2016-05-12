@@ -10,8 +10,8 @@ use Psr\Http\Message\RequestInterface;
 
 class CachetSDKConnectException extends CachetSDKException
 {
-	public function __construct(RequestInterface $request, $message, \Exception $previous = null)
-	{
-		parent::__construct($request, $message, $previous);
-	}
+    public function __construct(RequestInterface $request, $message, \Exception $previous = null)
+    {
+        parent::__construct($request, $message, $previous);
+    }
 }

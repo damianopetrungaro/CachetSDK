@@ -6,7 +6,6 @@
 
 namespace Damianopetrungaro\CachetSDK\Exceptions;
 
-
 class CachetSDKTooManyRedirectsException extends CachetSDKException
 {
 }

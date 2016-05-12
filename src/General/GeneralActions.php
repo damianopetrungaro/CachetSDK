@@ -6,37 +6,34 @@
 
 namespace Damianopetrungaro\CachetSDK\General;
 
-
 use Damianopetrungaro\CachetSDK\CachetClient;
 
 class GeneralActions
 {
-	/**
-	 * Contains Cachet Client (using Guzzle)
-	 *
-	 * @var \GuzzleHttp\Client
-	 */
-	protected $client;
+    /**
+     * Contains Cachet Client (using Guzzle).
+     *
+     * @var \GuzzleHttp\Client
+     */
+    protected $client;
 
+    /**
+     * GroupActions constructor.
+     *
+     * @param CachetClient $client
+     */
+    public function __construct(CachetClient $client)
+    {
+        $this->client = $client;
+    }
 
-	/**
-	 * GroupActions constructor
-	 *
-	 * @param CachetClient $client
-	 */
-	public function __construct(CachetClient $client)
-	{
-		$this->client = $client;
-	}
+    public function ping()
+    {
+        return $this->client->call('GET', 'ping');
+    }
 
-
-	public function ping()
-	{
-		return $this->client->call('GET', 'ping');
-	}
-
-	public function version()
-	{
-		return $this->client->call('GET', 'version');
-	}
+    public function version()
+    {
+        return $this->client->call('GET', 'version');
+    }
 }
