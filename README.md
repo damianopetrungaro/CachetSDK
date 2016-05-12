@@ -51,7 +51,7 @@ A PHP SDK for [Cachet](https://cachethq.io/), providing a full functionality acc
     * [indexSubscribers](#subscribers-index)
     * [searchSubscriber](#subscribers-search)
     * [storeSubscriber](#subscribers-store)
-#### [Exceptions](#exceptions)
+* [Exceptions](#exceptions)
 
 ## Cachet Client
 For create a cachet client you need an endpoint and a token, those data are available on your Cachet site.
