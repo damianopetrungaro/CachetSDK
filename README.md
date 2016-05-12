@@ -3,6 +3,9 @@ A PHP SDK for [Cachet](https://cachethq.io/), providing a full functionality acc
 
 #### Avaiable Elements and method
 
+* [General](#general)
+    * [ping](#general-ping)
+    * [version](#general-version)
 * [Components](#components)
     * [cacheComponents](#components-cache)
     * [deleteComponent](#components-delete)
@@ -21,72 +24,129 @@ A PHP SDK for [Cachet](https://cachethq.io/), providing a full functionality acc
 For create a cachet client you need an enpoint and a token, those data are avaiable on your CachetHQ site.
 
     $cachetClient = new CachetClient('endPointGoesHere/api/v1', 'tokenGoesGere');
-    
+
 A client MUST be injected to a ElementFactory. This allow you tu use multiple sites of cachet in one shot!
 
 All the Factories are documented in the first part of each element.
 
+
+## General
+
+### Init a general element
+For use one or more action for the general element, you must init an instance of GeneralActions.
+
+```php
+    $generalManager = GeneralFactory::build($cachetClient);
+```
+
+
+----------
+
+
+### General Ping
+This method simply ping your cachet site.
+
+```php
+    $generalManager = GeneralFactory::build($cachetClient);
+    $pong = $generalManager->ping();
+```
+
+----------
+
+
+### General Version
+
+This method simply get your cachet site version.
+
+```php
+    $generalManager = GeneralFactory::build($cachetClient);
+    $version = $generalManager->version();
+```
+
+----------
+----------
+----------
+
 ## Components
 
-### Init a component
+### Init a component element
 For use one or more action for the component element, you must init an insstance of ComponentsActions.
 
+```php
     $componentManager = ComponentFactory::build($cachetClient);
-    
+```
+
+----------
+
+
 ### Components Cache
 The cache method allows you to use call multiple time the API without kill the perfrormance.
 This method is used in [indexComponents](#components-index) and [searchComponent](#components-search), and use the cachet pagination.
 
 Anyway you can instance it manually.
-
+```php
     $componentManager = ComponentFactory::build($cachetClient);
     $cahedComponents = $componentManager->cacheComponents($num, $page)
-
+```
 
 ###### $num (int - default = 1000) = is the number of component to return from a single page (uses cachet pagination).
 
 ###### $page (int - default = 1) = is the page number (uses cachet pagination).
 
 
+----------
+
+
 ### Components Delete
 
 The delete method allows you to delete a specific component from cachet.
-
+```php
     $componentManager = ComponentFactory::build($cachetClient);
     $deleteComponent = $componentManager->deleteComponent($id);
-
+```
 $id (int) = component ID.
+
+
+----------
 
 
 ### Components Get
 
 The get method allows you to get a specific component from cachet.
-
+```php
     $componentManager = ComponentFactory::build($cachetClient);
     $getComponent = $componentManager->getComponent($id);
-
+```
 ###### $id (int) = component ID.
+
+
+----------
+
 
 ### Components Index
 
 The index method allows you to get a list of component from cachet.
-
+```php
     $componentManager = ComponentFactory::build($cachetClient);
     $indexComponents = $componentManager->indexComponents($num, $page, $cache)
-
+```
 ###### $num (int - default = 1000) = is the number of component to return from a single page (uses cachet pagination).
 
 ###### $page (int - default = 1) = is the page number (uses cachet pagination).
 
 ###### $cache (bool - default = true) = prefer cached components
 
+
+----------
+
+
 ### Components Search
 
 The search method allows you to get one or more component from cachet searching by key's value.
-
+```php
     $componentManager = ComponentFactory::build($cachetClient);
     $cahedComponents = $componentManager->searchComponents($search, $by, $cache, $limit, $num, $page)
-
+```
 
 ###### $search (mixed) = is the value to search for
 
@@ -100,13 +160,17 @@ The search method allows you to get one or more component from cachet searching 
 
 ###### $page (int - default = 1) = is the page number (uses cachet pagination).
 
+
+----------
+
+
 ### Components Store
 
 The store method allows you to add a component.
-
+```php
     $componentManager = ComponentFactory::build($cachetClient);
     $cahedComponents = $componentManager->storeComponent($component)
-
+```
 ###### $component (array) = Sample:
 
     [
@@ -119,14 +183,18 @@ The store method allows you to add a component.
         'enabled' => 1, // Read Cachet doc for more info
     ]
 
+
+----------
+
+
 ### Components Update
 
 
 The update method allows you to update a  specific component.
-
+```php
     $componentManager = ComponentFactory::build($cachetClient);
     $cahedComponents = $componentManager->storeComponent($id, $component)
-
+```
 ###### $id (int) = component ID
 ###### $component (array) = Sample:
 
