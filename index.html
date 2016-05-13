@@ -197,7 +197,9 @@
 <p>The cache method allows you to call multiple time the API without kill the performance.
 This method is used in <a href="#components-index">indexComponents</a> and <a href="#components-search">searchComponent</a>, and use the cachet pagination.</p>
 
-<p>Anyway you can instance it manually.</p>
+<p>Anyway you can instance it manually, but for use it in <a href="#components-index">indexComponents</a> and <a href="#components-search">searchComponent</a> you must set the cache to true.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$componentManager</span><span class="pl-k">-&gt;</span>setCache(<span class="pl-c1">true</span>); <span class="pl-c">// If you want to use cache</span></span></pre></div>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$componentManager</span> <span class="pl-k">=</span> <span class="pl-c1">ComponentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
 <span class="pl-s1">    <span class="pl-smi">$cachedComponents</span> <span class="pl-k">=</span> <span class="pl-smi">$componentManager</span><span class="pl-k">-&gt;</span>cacheComponents(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
@@ -242,7 +244,8 @@ This method is used in <a href="#components-index">indexComponents</a> and <a hr
 <p>The index method allows you to get a list of component from cachet.</p>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$componentManager</span> <span class="pl-k">=</span> <span class="pl-c1">ComponentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
-<span class="pl-s1">    <span class="pl-smi">$indexComponents</span> <span class="pl-k">=</span> <span class="pl-smi">$componentManager</span><span class="pl-k">-&gt;</span>indexComponents(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>, <span class="pl-smi">$cache</span>)</span></pre></div>
+<span class="pl-s1">    <span class="pl-c">// $componentManager-&gt;setCache(true); // If you want to use cache</span></span>
+<span class="pl-s1">    <span class="pl-smi">$indexComponents</span> <span class="pl-k">=</span> <span class="pl-smi">$componentManager</span><span class="pl-k">-&gt;</span>indexComponents(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
 
 <h6>
 <a id="num-int---default--1000--number-of-component-to-return-from-a-single-page-uses-cachet-pagination-1" class="anchor" href="#num-int---default--1000--number-of-component-to-return-from-a-single-page-uses-cachet-pagination-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of component to return from a single page (uses cachet pagination).</h6>
@@ -264,7 +267,8 @@ This method is used in <a href="#components-index">indexComponents</a> and <a hr
 !!! RETURN A SIMPLE ARRAY WITH ALL THE FOUND COMPONENTS !!!</p>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$componentManager</span> <span class="pl-k">=</span> <span class="pl-c1">ComponentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
-<span class="pl-s1">    <span class="pl-smi">$components</span> <span class="pl-k">=</span> <span class="pl-smi">$componentManager</span><span class="pl-k">-&gt;</span>searchComponents(<span class="pl-smi">$search</span>, <span class="pl-smi">$by</span>, <span class="pl-smi">$cache</span>, <span class="pl-smi">$limit</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
+<span class="pl-s1">    <span class="pl-c">// $componentManager-&gt;setCache(true); // If you want to use cache</span></span>
+<span class="pl-s1">    <span class="pl-smi">$components</span> <span class="pl-k">=</span> <span class="pl-smi">$componentManager</span><span class="pl-k">-&gt;</span>searchComponents(<span class="pl-smi">$search</span>, <span class="pl-smi">$by</span>, <span class="pl-smi">$limit</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
 
 <h6>
 <a id="search-mixed--value-to-find" class="anchor" href="#search-mixed--value-to-find" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$search (mixed) = Value to find.</h6>
@@ -359,7 +363,9 @@ This method is used in <a href="#components-index">indexComponents</a> and <a hr
 <p>The cache method allows you to call multiple time the API without kill the performance.
 This method is used in <a href="#groups-index">indexGroups</a> and <a href="#groups-search">searchGroup</a>, and use the cachet pagination.</p>
 
-<p>Anyway you can instance it manually.</p>
+<p>Anyway you can instance it manually, but for use it in <a href="#caches-index">indexCaches</a> and <a href="#caches-search">searchCache</a> you must set the cache to true.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$cacheManager</span><span class="pl-k">-&gt;</span>setCache(<span class="pl-c1">true</span>); <span class="pl-c">// If you want to use cache</span></span></pre></div>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$groupManager</span> <span class="pl-k">=</span> <span class="pl-c1">GroupFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
 <span class="pl-s1">    <span class="pl-smi">$cachedGroups</span> <span class="pl-k">=</span> <span class="pl-smi">$groupManager</span><span class="pl-k">-&gt;</span>cacheGroups(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
@@ -404,7 +410,8 @@ This method is used in <a href="#groups-index">indexGroups</a> and <a href="#gro
 <p>The index method allows you to get a list of group from cachet.</p>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$groupManager</span> <span class="pl-k">=</span> <span class="pl-c1">GroupFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
-<span class="pl-s1">    <span class="pl-smi">$indexGroups</span> <span class="pl-k">=</span> <span class="pl-smi">$groupManager</span><span class="pl-k">-&gt;</span>indexGroups(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>, <span class="pl-smi">$cache</span>)</span></pre></div>
+<span class="pl-s1">    <span class="pl-c">// $groupManager-&gt;setCache(true); // If you want to use cache</span></span>
+<span class="pl-s1">    <span class="pl-smi">$indexGroups</span> <span class="pl-k">=</span> <span class="pl-smi">$groupManager</span><span class="pl-k">-&gt;</span>indexGroups(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
 
 <h6>
 <a id="num-int---default--1000--number-of-group-to-return-from-a-single-page-uses-cachet-pagination-1" class="anchor" href="#num-int---default--1000--number-of-group-to-return-from-a-single-page-uses-cachet-pagination-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of group to return from a single page (uses cachet pagination).</h6>
@@ -426,7 +433,8 @@ This method is used in <a href="#groups-index">indexGroups</a> and <a href="#gro
 !!! RETURN A SIMPLE ARRAY WITH ALL THE FOUND COMPONENTS !!!</p>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$groupManager</span> <span class="pl-k">=</span> <span class="pl-c1">GroupFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
-<span class="pl-s1">    <span class="pl-smi">$groups</span> <span class="pl-k">=</span> <span class="pl-smi">$groupManager</span><span class="pl-k">-&gt;</span>searchGroups(<span class="pl-smi">$search</span>, <span class="pl-smi">$by</span>, <span class="pl-smi">$cache</span>, <span class="pl-smi">$limit</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
+<span class="pl-s1">    <span class="pl-c">// $groupManager-&gt;setCache(true); // If you want to use cache</span></span>
+<span class="pl-s1">    <span class="pl-smi">$groups</span> <span class="pl-k">=</span> <span class="pl-smi">$groupManager</span><span class="pl-k">-&gt;</span>searchGroups(<span class="pl-smi">$search</span>, <span class="pl-smi">$by</span>, <span class="pl-smi">$limit</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
 
 <h6>
 <a id="search-mixed--value-to-find-1" class="anchor" href="#search-mixed--value-to-find-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$search (mixed) = Value to find.</h6>
@@ -513,7 +521,9 @@ This method is used in <a href="#groups-index">indexGroups</a> and <a href="#gro
 <p>The cache method allows you to call multiple time the API without kill the performance.
 This method is used in <a href="#incidents-index">indexIncidents</a> and <a href="#incidents-search">searchIncident</a>, and use the cachet pagination.</p>
 
-<p>Anyway you can instance it manually.</p>
+<p>Anyway you can instance it manually, but for use it in <a href="#incidents-index">indexIncidents</a> and <a href="#incidents-search">searchIncident</a> you must set the cache to true.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$incidentManager</span><span class="pl-k">-&gt;</span>setCache(<span class="pl-c1">true</span>); <span class="pl-c">// If you want to use cache</span></span></pre></div>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$incidentManager</span> <span class="pl-k">=</span> <span class="pl-c1">IncidentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
 <span class="pl-s1">    <span class="pl-smi">$cachedIncidents</span> <span class="pl-k">=</span> <span class="pl-smi">$incidentManager</span><span class="pl-k">-&gt;</span>cacheIncidents(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
@@ -558,7 +568,8 @@ This method is used in <a href="#incidents-index">indexIncidents</a> and <a href
 <p>The index method allows you to get a list of incident from cachet.</p>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$incidentManager</span> <span class="pl-k">=</span> <span class="pl-c1">IncidentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
-<span class="pl-s1">    <span class="pl-smi">$indexIncidents</span> <span class="pl-k">=</span> <span class="pl-smi">$incidentManager</span><span class="pl-k">-&gt;</span>indexIncidents(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>, <span class="pl-smi">$cache</span>)</span></pre></div>
+<span class="pl-s1">    <span class="pl-c">// $incidentManager-&gt;setCache(true); // If you want to use cache</span></span>
+<span class="pl-s1">    <span class="pl-smi">$indexIncidents</span> <span class="pl-k">=</span> <span class="pl-smi">$incidentManager</span><span class="pl-k">-&gt;</span>indexIncidents(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
 
 <h6>
 <a id="num-int---default--1000--number-of-incident-to-return-from-a-single-page-uses-cachet-pagination-1" class="anchor" href="#num-int---default--1000--number-of-incident-to-return-from-a-single-page-uses-cachet-pagination-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of incident to return from a single page (uses cachet pagination).</h6>
@@ -580,7 +591,8 @@ This method is used in <a href="#incidents-index">indexIncidents</a> and <a href
 !!! RETURN A SIMPLE ARRAY WITH ALL THE FOUND COMPONENTS !!!</p>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$incidentManager</span> <span class="pl-k">=</span> <span class="pl-c1">IncidentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
-<span class="pl-s1">    <span class="pl-smi">$incidents</span> <span class="pl-k">=</span> <span class="pl-smi">$incidentManager</span><span class="pl-k">-&gt;</span>searchIncidents(<span class="pl-smi">$search</span>, <span class="pl-smi">$by</span>, <span class="pl-smi">$cache</span>, <span class="pl-smi">$limit</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
+<span class="pl-s1">    <span class="pl-c">// $incidentManager-&gt;setCache(true); // If you want to use cache</span></span>
+<span class="pl-s1">    <span class="pl-smi">$incidents</span> <span class="pl-k">=</span> <span class="pl-smi">$incidentManager</span><span class="pl-k">-&gt;</span>searchIncidents(<span class="pl-smi">$search</span>, <span class="pl-smi">$by</span>, <span class="pl-smi">$limit</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
 
 <h6>
 <a id="search-mixed--value-to-find-2" class="anchor" href="#search-mixed--value-to-find-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$search (mixed) = Value to find.</h6>
@@ -675,7 +687,9 @@ This method is used in <a href="#incidents-index">indexIncidents</a> and <a href
 <p>The cache method allows you to call multiple time the API without kill the performance.
 This method is used in <a href="#metrics-index">indexMetrics</a> and <a href="#metrics-search">searchMetric</a>, and use the cachet pagination.</p>
 
-<p>Anyway you can instance it manually.</p>
+<p>Anyway you can instance it manually, but for use it in <a href="#metrics-index">indexMetrics</a> and <a href="#metrics-search">searchMetric</a> you must set the cache to true.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$metricManager</span><span class="pl-k">-&gt;</span>setCache(<span class="pl-c1">true</span>); <span class="pl-c">// If you want to use cache</span></span></pre></div>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$metricManager</span> <span class="pl-k">=</span> <span class="pl-c1">MetricFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
 <span class="pl-s1">    <span class="pl-smi">$cachedMetrics</span> <span class="pl-k">=</span> <span class="pl-smi">$metricManager</span><span class="pl-k">-&gt;</span>cacheMetrics(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
@@ -720,7 +734,8 @@ This method is used in <a href="#metrics-index">indexMetrics</a> and <a href="#m
 <p>The index method allows you to get a list of metric from cachet.</p>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$metricManager</span> <span class="pl-k">=</span> <span class="pl-c1">MetricFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
-<span class="pl-s1">    <span class="pl-smi">$indexMetrics</span> <span class="pl-k">=</span> <span class="pl-smi">$metricManager</span><span class="pl-k">-&gt;</span>indexMetrics(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>, <span class="pl-smi">$cache</span>)</span></pre></div>
+<span class="pl-s1">    <span class="pl-c">// $metricManager-&gt;setCache(true); // If you want to use cache</span></span>
+<span class="pl-s1">    <span class="pl-smi">$indexMetrics</span> <span class="pl-k">=</span> <span class="pl-smi">$metricManager</span><span class="pl-k">-&gt;</span>indexMetrics(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
 
 <h6>
 <a id="num-int---default--1000--number-of-metric-to-return-from-a-single-page-uses-cachet-pagination-1" class="anchor" href="#num-int---default--1000--number-of-metric-to-return-from-a-single-page-uses-cachet-pagination-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of metric to return from a single page (uses cachet pagination).</h6>
@@ -742,7 +757,8 @@ This method is used in <a href="#metrics-index">indexMetrics</a> and <a href="#m
 !!! RETURN A SIMPLE ARRAY WITH ALL THE FOUND COMPONENTS !!!</p>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$metricManager</span> <span class="pl-k">=</span> <span class="pl-c1">MetricFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
-<span class="pl-s1">    <span class="pl-smi">$metrics</span> <span class="pl-k">=</span> <span class="pl-smi">$metricManager</span><span class="pl-k">-&gt;</span>searchMetrics(<span class="pl-smi">$search</span>, <span class="pl-smi">$by</span>, <span class="pl-smi">$cache</span>, <span class="pl-smi">$limit</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
+<span class="pl-s1">    <span class="pl-c">// $metricManager-&gt;setCache(true); // If you want to use cache</span></span>
+<span class="pl-s1">    <span class="pl-smi">$metrics</span> <span class="pl-k">=</span> <span class="pl-smi">$metricManager</span><span class="pl-k">-&gt;</span>searchMetrics(<span class="pl-smi">$search</span>, <span class="pl-smi">$by</span>, <span class="pl-smi">$limit</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
 
 <h6>
 <a id="search-mixed--value-to-find-3" class="anchor" href="#search-mixed--value-to-find-3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$search (mixed) = Value to find.</h6>
@@ -811,7 +827,9 @@ This method is used in <a href="#metrics-index">indexMetrics</a> and <a href="#m
 <p>The cache method allows you to call multiple time the API without kill the performance.
 This method is used in <a href="#subscribers-index">indexSubscribers</a> and <a href="#subscribers-search">searchSubscriber</a>, and use the cachet pagination.</p>
 
-<p>Anyway you can instance it manually.</p>
+<p>Anyway you can instance it manually, but for use it in <a href="#subscribers-index">indexSubscribers</a> and <a href="#subscribers-search">searchSubscriber</a> you must set the cache to true.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$subscriberManager</span><span class="pl-k">-&gt;</span>setCache(<span class="pl-c1">true</span>); <span class="pl-c">// If you want to use cache</span></span></pre></div>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$subscriberManager</span> <span class="pl-k">=</span> <span class="pl-c1">SubscriberFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
 <span class="pl-s1">    <span class="pl-smi">$cachedSubscribers</span> <span class="pl-k">=</span> <span class="pl-smi">$subscriberManager</span><span class="pl-k">-&gt;</span>cacheSubscribers(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
@@ -843,7 +861,8 @@ This method is used in <a href="#subscribers-index">indexSubscribers</a> and <a 
 <p>The index method allows you to get a list of subscriber from cachet.</p>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$subscriberManager</span> <span class="pl-k">=</span> <span class="pl-c1">SubscriberFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
-<span class="pl-s1">    <span class="pl-smi">$indexSubscribers</span> <span class="pl-k">=</span> <span class="pl-smi">$subscriberManager</span><span class="pl-k">-&gt;</span>indexSubscribers(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>, <span class="pl-smi">$cache</span>)</span></pre></div>
+<span class="pl-s1">    <span class="pl-c">// $subscriberManager-&gt;setCache(true); // If you want to use cache</span></span>
+<span class="pl-s1">    <span class="pl-smi">$indexSubscribers</span> <span class="pl-k">=</span> <span class="pl-smi">$subscriberManager</span><span class="pl-k">-&gt;</span>indexSubscribers(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
 
 <h6>
 <a id="num-int---default--1000--number-of-subscriber-to-return-from-a-single-page-uses-cachet-pagination-1" class="anchor" href="#num-int---default--1000--number-of-subscriber-to-return-from-a-single-page-uses-cachet-pagination-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of subscriber to return from a single page (uses cachet pagination).</h6>
@@ -865,7 +884,8 @@ This method is used in <a href="#subscribers-index">indexSubscribers</a> and <a 
 !!! RETURN A SIMPLE ARRAY WITH ALL THE FOUND COMPONENTS !!!</p>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$subscriberManager</span> <span class="pl-k">=</span> <span class="pl-c1">SubscriberFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
-<span class="pl-s1">    <span class="pl-smi">$subscribers</span> <span class="pl-k">=</span> <span class="pl-smi">$subscriberManager</span><span class="pl-k">-&gt;</span>searchSubscribers(<span class="pl-smi">$search</span>, <span class="pl-smi">$by</span>, <span class="pl-smi">$cache</span>, <span class="pl-smi">$limit</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
+<span class="pl-s1">    <span class="pl-c">// $subscriberManager-&gt;setCache(true); // If you want to use cache</span></span>
+<span class="pl-s1">    <span class="pl-smi">$subscribers</span> <span class="pl-k">=</span> <span class="pl-smi">$subscriberManager</span><span class="pl-k">-&gt;</span>searchSubscribers(<span class="pl-smi">$search</span>, <span class="pl-smi">$by</span>, <span class="pl-smi">$limit</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
 
 <h6>
 <a id="search-mixed--value-to-find-4" class="anchor" href="#search-mixed--value-to-find-4" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$search (mixed) = Value to find.</h6>
@@ -934,7 +954,9 @@ This method is used in <a href="#subscribers-index">indexSubscribers</a> and <a 
 <p>The cache method allows you to call multiple time the API without kill the performance.
 This method is used in <a href="#points-index">indexPoints</a> and <a href="#points-search">searchPoint</a>, and use the cachet pagination.</p>
 
-<p>Anyway you can instance it manually.</p>
+<p>Anyway you can instance it manually, but for use it in <a href="#points-index">indexPoints</a> and <a href="#points-search">searchPoint</a> you must set the cache to true.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$pointManager</span><span class="pl-k">-&gt;</span>setCache(<span class="pl-c1">true</span>); <span class="pl-c">// If you want to use cache</span></span></pre></div>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$pointManager</span> <span class="pl-k">=</span> <span class="pl-c1">PointFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
 <span class="pl-s1">    <span class="pl-smi">$cachedPoints</span> <span class="pl-k">=</span> <span class="pl-smi">$pointManager</span><span class="pl-k">-&gt;</span>cachePoints(<span class="pl-smi">$metricId</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
@@ -972,6 +994,7 @@ This method is used in <a href="#points-index">indexPoints</a> and <a href="#poi
 <p>The index method allows you to get a list of point from cachet.</p>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$pointManager</span> <span class="pl-k">=</span> <span class="pl-c1">PointFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-c">// $subscriberManager-&gt;setCache(true); // If you want to use cache</span></span>
 <span class="pl-s1">    <span class="pl-smi">$indexPoints</span> <span class="pl-k">=</span> <span class="pl-smi">$pointManager</span><span class="pl-k">-&gt;</span>indexPoints(<span class="pl-smi">$metricId</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>, <span class="pl-smi">$cache</span>)</span></pre></div>
 
 <h6>
@@ -997,7 +1020,8 @@ This method is used in <a href="#points-index">indexPoints</a> and <a href="#poi
 !!! RETURN A SIMPLE ARRAY WITH ALL THE FOUND COMPONENTS !!!</p>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$pointManager</span> <span class="pl-k">=</span> <span class="pl-c1">PointFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
-<span class="pl-s1">    <span class="pl-smi">$points</span> <span class="pl-k">=</span> <span class="pl-smi">$pointManager</span><span class="pl-k">-&gt;</span>searchPoints(<span class="pl-smi">$metricId</span>, <span class="pl-smi">$search</span>, <span class="pl-smi">$by</span>, <span class="pl-smi">$cache</span>, <span class="pl-smi">$limit</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
+<span class="pl-s1">    <span class="pl-c">// $pointManager-&gt;setCache(true); // If you want to use cache</span></span>
+<span class="pl-s1">    <span class="pl-smi">$points</span> <span class="pl-k">=</span> <span class="pl-smi">$pointManager</span><span class="pl-k">-&gt;</span>searchPoints(<span class="pl-smi">$metricId</span>, <span class="pl-smi">$search</span>, <span class="pl-smi">$by</span>, <span class="pl-smi">$limit</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
 
 <h6>
 <a id="metricid-int--metric-id-3" class="anchor" href="#metricid-int--metric-id-3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$metricId (int) = Metric ID.</h6>
