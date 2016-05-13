@@ -13,20 +13,18 @@ use Damianopetrungaro\CachetSDK\CachetClient;
  * Class SubscriberFactory.
  *
  * The SubscriberFactory generate a singleton for interact with Subscribers in cachet
- *
- * @package Damianopetrungaro\CachetSDK\Subscribers
  */
 class SubscriberFactory
 {
-	/**
-	 * Build an object
-	 *
-	 * @param $client
-	 *
-	 * @return object SubscriberActions
-	 */
-	public static function build(CachetClient $client)
-	{
-		return new SubscriberActions($client);
-	}
+    /**
+     * Build an object.
+     *
+     * @param $client
+     *
+     * @return object SubscriberActions
+     */
+    public static function build(CachetClient $client)
+    {
+        return new SubscriberActions($client);
+    }
 }

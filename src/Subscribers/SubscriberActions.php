@@ -9,170 +9,158 @@ namespace Damianopetrungaro\CachetSDK\Subscribers;
 
 use Damianopetrungaro\CachetSDK\CachetClient;
 
-
 /**
  * Class SubscriberActions.
  *
  * The SubscriberActions contains all the action for Subscribers API available in CachetHQ
- *
- * @package CachetSDK\Subscribers
  */
 class SubscriberActions
 {
-	/**
-	 * Contains Cachet Client (using Guzzle)
-	 *
-	 * @var \GuzzleHttp\Client
-	 */
-	protected $client;
+    /**
+     * Contains Cachet Client (using Guzzle).
+     *
+     * @var \GuzzleHttp\Client
+     */
+    protected $client;
 
+    /**
+     * Contains cached Subscribers.
+     * @var null
+     */
+    protected $cached = null;
 
-	/**
-	 * Contains cached Subscribers
-	 * @var null
-	 */
-	protected $cached = null;
+    /**
+     * SubscriberActions constructor.
+     *
+     * @param CachetClient $client
+     */
+    public function __construct(CachetClient $client)
+    {
+        $this->client = $client;
+    }
 
+    /**
+     * Cache Subscribers for performance improvement.
+     *
+     * @param int $num
+     * @param int $page
+     *
+     * @return array|bool
+     */
+    public function cacheSubscribers($num = 1000, $page = 1)
+    {
+        if ($this->cached != null) {
+            return $this->cached;
+        }
 
-	/**
-	 * SubscriberActions constructor
-	 *
-	 * @param CachetClient $client
-	 */
-	public function __construct(CachetClient $client)
-	{
-		$this->client = $client;
-	}
+        $this->cached = $this->client->call(
+            'GET',
+            'subscribers',
+            [
+                'query' => [
+                    'per_page' => $num,
+                    'current_page' => $page,
+                ],
+            ]
+        );
 
+        return $this->cached;
+    }
 
-	/**
-	 * Cache Subscribers for performance improvement
-	 *
-	 * @param int $num
-	 * @param int $page
-	 *
-	 * @return array|bool
-	 */
-	public function cacheSubscribers($num = 1000, $page = 1)
-	{
-		if ($this->cached != null) {
-			return $this->cached;
-		}
+    /**
+     * Get a defined number of Subscribers.
+     *
+     * @param int $num
+     * @param int $page
+     * @param bool $cache
+     *
+     * @return array|bool
+     */
+    public function indexSubscribers($num = 1000, $page = 1, $cache = false)
+    {
+        if ($cache != false) {
+            return $this->cacheSubscribers($num, $page);
+        }
 
-		$this->cached = $this->client->call(
-			'GET',
-			'subscribers',
-			[
-				'query' => [
-					'per_page' => $num,
-					'current_page' => $page,
-				],
-			]
-		);
+        return $this->client->call(
+            'GET',
+            'subscribers',
+            [
+                'query' => [
+                    'per_page' => $num,
+                    'current_page' => $page,
+                ],
+            ]
+        );
+    }
 
+    /**
+     * Search if a defined number of Subscribers exists.
+     *
+     * @param string $search
+     * @param string $by
+     * @param bool $cache
+     * @param int $num
+     * @param int $page
+     * @param int $limit
+     *
+     * @return mixed
+     */
+    public function searchSubscribers($search, $by, $cache = false, $limit = 1, $num = 1000, $page = 1)
+    {
+        $subscribers = $this->indexSubscribers($num, $page, $cache)['data'];
 
-		return $this->cached;
-	}
+        $filtered = array_filter(
+            $subscribers,
+            function ($subscriber) use ($search, $by) {
+                if (strpos($subscriber[$by], $search) !== false) {
+                    return $subscriber;
+                }
+                if ($subscriber[$by] === $search) {
+                    return $subscriber;
+                }
 
+                return false;
+            }
+        );
 
-	/**
-	 * Get a defined number of Subscribers
-	 *
-	 * @param int $num
-	 * @param int $page
-	 * @param bool $cache
-	 *
-	 * @return array|bool
-	 */
-	public function indexSubscribers($num = 1000, $page = 1, $cache = false)
-	{
-		if ($cache != false) {
-			return $this->cacheSubscribers($num, $page);
-		}
+        if ($limit == 1) {
+            return array_shift($filtered);
+        }
 
-		return $this->client->call(
-			'GET',
-			'subscribers',
-			[
-				'query' => [
-					'per_page' => $num,
-					'current_page' => $page,
-				],
-			]
-		);
-	}
+        return array_slice($filtered, 0, $limit);
+    }
 
+    /**
+     * Store a Subscriber.
+     *
+     * @param array $subscriber
+     *
+     * @return bool
+     */
+    public function storeSubscriber(array $subscriber)
+    {
+        return $this->client->call(
+            'POST',
+            'subscribers',
+            [
+                'json' => [
+                    'email' => $subscriber['email'],
+                    'verify' => $subscriber['verify'] ?: 0,
+                ],
+            ]
+        );
+    }
 
-	/**
-	 * Search if a defined number of Subscribers exists
-	 *
-	 * @param string $search
-	 * @param string $by
-	 * @param bool $cache
-	 * @param int $num
-	 * @param int $page
-	 * @param int $limit
-	 *
-	 * @return mixed
-	 */
-	public function searchSubscribers($search, $by, $cache = false, $limit = 1, $num = 1000, $page = 1)
-	{
-		$subscribers = $this->indexSubscribers($num, $page, $cache)['data'];
-
-		$filtered = array_filter(
-			$subscribers,
-			function ($subscriber) use ($search, $by) {
-				if (strpos($subscriber[$by], $search) !== false) {
-					return $subscriber;
-				}
-				if ($subscriber[$by] === $search) {
-					return $subscriber;
-				}
-
-				return false;
-			}
-		);
-
-		if ($limit == 1) {
-
-			return array_shift($filtered);
-		}
-
-		return array_slice($filtered, 0, $limit);
-	}
-
-
-	/**
-	 * Store a Subscriber
-	 *
-	 * @param array $subscriber
-	 *
-	 * @return bool
-	 */
-	public function storeSubscriber(array $subscriber)
-	{
-		return $this->client->call(
-			'POST',
-			'subscribers',
-			[
-				'json' => [
-					'email' => $subscriber['email'],
-					'verify' => $subscriber['verify'] ?: 0
-				],
-			]
-		);
-	}
-
-
-	/**
-	 * Delete a specific Subscriber
-	 *
-	 * @param int $id
-	 *
-	 * @return bool
-	 */
-	public function deleteSubscriber($id)
-	{
-		return $this->client->call('DELETE', "subscribers/$id");
-	}
+    /**
+     * Delete a specific Subscriber.
+     *
+     * @param int $id
+     *
+     * @return bool
+     */
+    public function deleteSubscriber($id)
+    {
+        return $this->client->call('DELETE', "subscribers/$id");
+    }
 }
