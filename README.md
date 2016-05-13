@@ -137,7 +137,11 @@ For use one or more action for the Component element, you must init an instance 
 The cache method allows you to call multiple time the API without kill the performance.
 This method is used in [indexComponents](#components-index) and [searchComponent](#components-search), and use the cachet pagination.
 
-Anyway you can instance it manually.
+Anyway you can instance it manually, but for use it in [indexComponents](#components-index) and [searchComponent](#components-search) you must set the cache to true.
+
+```php
+    $componentManager->setCache(true); If you want to use cache
+```
 
 ```php
     $componentManager = ComponentFactory::build($cachetClient);
@@ -188,7 +192,8 @@ The index method allows you to get a list of component from cachet.
 
 ```php
     $componentManager = ComponentFactory::build($cachetClient);
-    $indexComponents = $componentManager->indexComponents($num, $page, $cache)
+    // $componentManager->setCache(true); If you want to use cache
+    $indexComponents = $componentManager->indexComponents($num, $page)
 ```
 
 ###### $num (int - default = 1000) = Number of component to return from a single page (uses cachet pagination).
@@ -210,7 +215,8 @@ The search method allows you to get one or more component from cachet searching 
 
 ```php
     $componentManager = ComponentFactory::build($cachetClient);
-    $components = $componentManager->searchComponents($search, $by, $cache, $limit, $num, $page)
+    // $componentManager->setCache(true); If you want to use cache
+    $components = $componentManager->searchComponents($search, $by, $limit, $num, $page)
 ```
 
 ###### $search (mixed) = Value to find.
@@ -297,7 +303,11 @@ For use one or more action for the Group element, you must init an instance of G
 The cache method allows you to call multiple time the API without kill the performance.
 This method is used in [indexGroups](#groups-index) and [searchGroup](#groups-search), and use the cachet pagination.
 
-Anyway you can instance it manually.
+Anyway you can instance it manually, but for use it in [indexCaches](#caches-index) and [searchCache](#caches-search) you must set the cache to true.
+
+```php
+    $cacheManager->setCache(true); If you want to use cache
+```
 
 ```php
     $groupManager = GroupFactory::build($cachetClient);
@@ -348,7 +358,8 @@ The index method allows you to get a list of group from cachet.
 
 ```php
     $groupManager = GroupFactory::build($cachetClient);
-    $indexGroups = $groupManager->indexGroups($num, $page, $cache)
+    // $groupManager->setCache(true); If you want to use cache
+    $indexGroups = $groupManager->indexGroups($num, $page)
 ```
 
 ###### $num (int - default = 1000) = Number of group to return from a single page (uses cachet pagination).
@@ -370,7 +381,8 @@ The search method allows you to get one or more group from cachet searching by k
 
 ```php
     $groupManager = GroupFactory::build($cachetClient);
-    $groups = $groupManager->searchGroups($search, $by, $cache, $limit, $num, $page)
+    // $groupManager->setCache(true); If you want to use cache
+    $groups = $groupManager->searchGroups($search, $by, $limit, $num, $page)
 ```
 
 ###### $search (mixed) = Value to find.
@@ -450,7 +462,11 @@ For use one or more action for the Incident element, you must init an instance o
 The cache method allows you to call multiple time the API without kill the performance.
 This method is used in [indexIncidents](#incidents-index) and [searchIncident](#incidents-search), and use the cachet pagination.
 
-Anyway you can instance it manually.
+Anyway you can instance it manually, but for use it in [indexIncidents](#incidents-index) and [searchIncident](#incidents-search) you must set the cache to true.
+
+```php
+    $incidentManager->setCache(true); If you want to use cache
+```
 
 ```php
     $incidentManager = IncidentFactory::build($cachetClient);
@@ -501,7 +517,8 @@ The index method allows you to get a list of incident from cachet.
 
 ```php
     $incidentManager = IncidentFactory::build($cachetClient);
-    $indexIncidents = $incidentManager->indexIncidents($num, $page, $cache)
+    // $incidentManager->setCache(true); If you want to use cache
+    $indexIncidents = $incidentManager->indexIncidents($num, $page)
 ```
 
 ###### $num (int - default = 1000) = Number of incident to return from a single page (uses cachet pagination).
@@ -523,7 +540,8 @@ The search method allows you to get one or more incident from cachet searching b
 
 ```php
     $incidentManager = IncidentFactory::build($cachetClient);
-    $incidents = $incidentManager->searchIncidents($search, $by, $cache, $limit, $num, $page)
+    // $incidentManager->setCache(true); If you want to use cache
+    $incidents = $incidentManager->searchIncidents($search, $by, $limit, $num, $page)
 ```
 
 ###### $search (mixed) = Value to find.
@@ -610,7 +628,11 @@ For use one or more action for the Metric element, you must init an instance of 
 The cache method allows you to call multiple time the API without kill the performance.
 This method is used in [indexMetrics](#metrics-index) and [searchMetric](#metrics-search), and use the cachet pagination.
 
-Anyway you can instance it manually.
+Anyway you can instance it manually, but for use it in [indexMetrics](#metrics-index) and [searchMetric](#metrics-search) you must set the cache to true.
+
+```php
+    $metricManager->setCache(true); If you want to use cache
+```
 
 ```php
     $metricManager = MetricFactory::build($cachetClient);
@@ -661,7 +683,8 @@ The index method allows you to get a list of metric from cachet.
 
 ```php
     $metricManager = MetricFactory::build($cachetClient);
-    $indexMetrics = $metricManager->indexMetrics($num, $page, $cache)
+    // $metricManager->setCache(true); If you want to use cache
+    $indexMetrics = $metricManager->indexMetrics($num, $page)
 ```
 
 ###### $num (int - default = 1000) = Number of metric to return from a single page (uses cachet pagination).
@@ -683,7 +706,8 @@ The search method allows you to get one or more metric from cachet searching by 
 
 ```php
     $metricManager = MetricFactory::build($cachetClient);
-    $metrics = $metricManager->searchMetrics($search, $by, $cache, $limit, $num, $page)
+    // $metricManager->setCache(true); If you want to use cache
+    $metrics = $metricManager->searchMetrics($search, $by, $limit, $num, $page)
 ```
 
 ###### $search (mixed) = Value to find.
@@ -746,7 +770,11 @@ For use one or more action for the Subscriber element, you must init an instance
 The cache method allows you to call multiple time the API without kill the performance.
 This method is used in [indexSubscribers](#subscribers-index) and [searchSubscriber](#subscribers-search), and use the cachet pagination.
 
-Anyway you can instance it manually.
+Anyway you can instance it manually, but for use it in [indexSubscribers](#subscribers-index) and [searchSubscriber](#subscribers-search) you must set the cache to true.
+
+```php
+    $subscriberManager->setCache(true); If you want to use cache
+```
 
 ```php
     $subscriberManager = SubscriberFactory::build($cachetClient);
@@ -782,7 +810,8 @@ The index method allows you to get a list of subscriber from cachet.
 
 ```php
     $subscriberManager = SubscriberFactory::build($cachetClient);
-    $indexSubscribers = $subscriberManager->indexSubscribers($num, $page, $cache)
+    // $subscriberManager->setCache(true); If you want to use cache
+    $indexSubscribers = $subscriberManager->indexSubscribers($num, $page)
 ```
 
 ###### $num (int - default = 1000) = Number of subscriber to return from a single page (uses cachet pagination).
@@ -804,7 +833,8 @@ The search method allows you to get one or more subscriber from cachet searching
 
 ```php
     $subscriberManager = SubscriberFactory::build($cachetClient);
-    $subscribers = $subscriberManager->searchSubscribers($search, $by, $cache, $limit, $num, $page)
+    // $subscriberManager->setCache(true); If you want to use cache
+    $subscribers = $subscriberManager->searchSubscribers($search, $by, $limit, $num, $page)
 ```
 
 ###### $search (mixed) = Value to find.
@@ -865,7 +895,11 @@ For use one or more action for the Point element, you must init an instance of P
 The cache method allows you to call multiple time the API without kill the performance.
 This method is used in [indexPoints](#points-index) and [searchPoint](#points-search), and use the cachet pagination.
 
-Anyway you can instance it manually.
+Anyway you can instance it manually, but for use it in [indexPoints](#points-index) and [searchPoint](#points-search) you must set the cache to true.
+
+```php
+    $pointManager->setCache(true); If you want to use cache
+```
 
 ```php
     $pointManager = PointFactory::build($cachetClient);
@@ -905,6 +939,7 @@ The index method allows you to get a list of point from cachet.
 
 ```php
     $pointManager = PointFactory::build($cachetClient);
+    // $subscriberManager->setCache(true); If you want to use cache
     $indexPoints = $pointManager->indexPoints($metricId, $num, $page, $cache)
 ```
 
@@ -929,7 +964,8 @@ The search method allows you to get one or more point from cachet searching by k
 
 ```php
     $pointManager = PointFactory::build($cachetClient);
-    $points = $pointManager->searchPoints($metricId, $search, $by, $cache, $limit, $num, $page)
+    // $pointManager->setCache(true); If you want to use cache
+    $points = $pointManager->searchPoints($metricId, $search, $by, $limit, $num, $page)
 ```
 
 ###### $metricId (int) = Metric ID.
