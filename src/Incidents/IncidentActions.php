@@ -31,6 +31,13 @@ class IncidentActions
     protected $cached = null;
 
     /**
+     * Cache status. If is true use cache.
+     *
+     * @var bool
+     */
+    private $cache = false;
+
+    /**
      * IncidentActions constructor.
      *
      * @param CachetClient $client
@@ -38,6 +45,16 @@ class IncidentActions
     public function __construct(CachetClient $client)
     {
         $this->client = $client;
+    }
+
+    /**
+     * Set the cache to true or false
+     *
+     * @param bool $status
+     */
+    public function setCache($status)
+    {
+        $this->cache = $status;
     }
 
     /**
@@ -73,13 +90,12 @@ class IncidentActions
      *
      * @param int  $num
      * @param int  $page
-     * @param bool $cache
      *
      * @return array|bool
      */
-    public function indexIncidents($num = 1000, $page = 1, $cache = false)
+    public function indexIncidents($num = 1000, $page = 1)
     {
-        if ($cache != false) {
+        if ($this->cache != false) {
             return $this->cacheIncidents($num, $page);
         }
 
@@ -98,13 +114,13 @@ class IncidentActions
     /**
      * Get a specific Incident.
      *
-     * @param int $id
+     * @param int $incidentId
      *
      * @return bool
      */
-    public function getIncident($id)
+    public function getIncident($incidentId)
     {
-        return $this->client->call('GET', "incidents/$id");
+        return $this->client->call('GET', "incidents/$incidentId");
     }
 
     /**
@@ -112,16 +128,15 @@ class IncidentActions
      *
      * @param string $search
      * @param string $by
-     * @param bool   $cache
      * @param int    $num
      * @param int    $page
      * @param int    $limit
      *
      * @return mixed
      */
-    public function searchIncidents($search, $by, $cache = false, $limit = 1, $num = 1000, $page = 1)
+    public function searchIncidents($search, $by, $limit = 1, $num = 1000, $page = 1)
     {
-        $incidents = $this->indexIncidents($num, $page, $cache)['data'];
+        $incidents = $this->indexIncidents($num, $page)['data'];
 
         $filtered = array_filter(
             $incidents,
@@ -162,25 +177,25 @@ class IncidentActions
     /**
      * Update a specific Incident.
      *
-     * @param int   $id
+     * @param int   $incidentId
      * @param array $incident
      *
      * @return bool
      */
-    public function updateIncident($id, array $incident)
+    public function updateIncident($incidentId, array $incident)
     {
-        return $this->client->call('PUT', "incidents/$id", ['json' => $incident]);
+        return $this->client->call('PUT', "incidents/$incidentId", ['json' => $incident]);
     }
 
     /**
      * Delete a specific Incident.
      *
-     * @param int $id
+     * @param int $incidentId
      *
      * @return bool
      */
-    public function deleteIncident($id)
+    public function deleteIncident($incidentId)
     {
-        return $this->client->call('DELETE', "incidents/$id");
+        return $this->client->call('DELETE', "incidents/$incidentId");
     }
 }

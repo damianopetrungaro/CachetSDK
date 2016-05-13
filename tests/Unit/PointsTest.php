@@ -153,7 +153,8 @@ class PointsTest extends \PHPUnit_Framework_TestCase
     {
         $goodClient = ClientFactory::goodClient();
         $pointFactory = PointFactory::build($goodClient);
-        $points = $pointFactory->searchPoints($metricId, $search, $by, true, 10);
+        $pointFactory->setCache(true);
+        $points = $pointFactory->searchPoints($metricId, $search, $by, 10);
         foreach ($points as $point) {
             $this->assertArrayHasKey('id', $point);
         }

@@ -31,6 +31,13 @@ class SubscriberActions
     protected $cached = null;
 
     /**
+     * Cache status. If is true use cache.
+     *
+     * @var bool
+     */
+    private $cache = false;
+
+    /**
      * SubscriberActions constructor.
      *
      * @param CachetClient $client
@@ -38,6 +45,16 @@ class SubscriberActions
     public function __construct(CachetClient $client)
     {
         $this->client = $client;
+    }
+
+    /**
+     * Set the cache to true or false
+     *
+     * @param bool $status
+     */
+    public function setCache($status)
+    {
+        $this->cache = $status;
     }
 
     /**
@@ -73,13 +90,12 @@ class SubscriberActions
      *
      * @param int  $num
      * @param int  $page
-     * @param bool $cache
      *
      * @return array|bool
      */
-    public function indexSubscribers($num = 1000, $page = 1, $cache = false)
+    public function indexSubscribers($num = 1000, $page = 1)
     {
-        if ($cache != false) {
+        if ($this->cache != false) {
             return $this->cacheSubscribers($num, $page);
         }
 
@@ -100,16 +116,15 @@ class SubscriberActions
      *
      * @param string $search
      * @param string $by
-     * @param bool   $cache
      * @param int    $num
      * @param int    $page
      * @param int    $limit
      *
      * @return mixed
      */
-    public function searchSubscribers($search, $by, $cache = false, $limit = 1, $num = 1000, $page = 1)
+    public function searchSubscribers($search, $by, $limit = 1, $num = 1000, $page = 1)
     {
-        $subscribers = $this->indexSubscribers($num, $page, $cache)['data'];
+        $subscribers = $this->indexSubscribers($num, $page)['data'];
 
         $filtered = array_filter(
             $subscribers,

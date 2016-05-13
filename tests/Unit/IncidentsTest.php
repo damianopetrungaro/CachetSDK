@@ -190,7 +190,8 @@ class IncidentsTest extends \PHPUnit_Framework_TestCase
     {
         $goodClient = ClientFactory::goodClient();
         $incidentFactory = IncidentFactory::build($goodClient);
-        $incidents = $incidentFactory->searchIncidents($search, $by, true, 10);
+        $incidentFactory->setCache(true);
+        $incidents = $incidentFactory->searchIncidents($search, $by, 10);
         foreach ($incidents as $incident) {
             $this->assertArrayHasKey('id', $incident);
         }

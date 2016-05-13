@@ -31,6 +31,13 @@ class MetricActions
     protected $cached = null;
 
     /**
+     * Cache status. If is true use cache.
+     *
+     * @var bool
+     */
+    private $cache = false;
+
+    /**
      * MetricActions constructor.
      *
      * @param CachetClient $client
@@ -38,6 +45,16 @@ class MetricActions
     public function __construct(CachetClient $client)
     {
         $this->client = $client;
+    }
+
+    /**
+     * Set the cache to true or false
+     *
+     * @param bool $status
+     */
+    public function setCache($status)
+    {
+        $this->cache = $status;
     }
 
     /**
@@ -73,13 +90,12 @@ class MetricActions
      *
      * @param int  $num
      * @param int  $page
-     * @param bool $cache
      *
      * @return array|bool
      */
-    public function indexMetrics($num = 1000, $page = 1, $cache = false)
+    public function indexMetrics($num = 1000, $page = 1)
     {
-        if ($cache != false) {
+        if ($this->cache != false) {
             return $this->cacheMetrics($num, $page);
         }
 
@@ -98,13 +114,13 @@ class MetricActions
     /**
      * Get a specific Metric.
      *
-     * @param int $id
+     * @param int $metricId
      *
      * @return bool
      */
-    public function getMetric($id)
+    public function getMetric($metricId)
     {
-        return $this->client->call('GET', "metrics/$id");
+        return $this->client->call('GET', "metrics/$metricId");
     }
 
     /**
@@ -112,16 +128,15 @@ class MetricActions
      *
      * @param string $search
      * @param string $by
-     * @param bool   $cache
      * @param int    $num
      * @param int    $page
      * @param int    $limit
      *
      * @return mixed
      */
-    public function searchMetrics($search, $by, $cache = false, $limit = 1, $num = 1000, $page = 1)
+    public function searchMetrics($search, $by, $limit = 1, $num = 1000, $page = 1)
     {
-        $metrics = $this->indexMetrics($num, $page, $cache)['data'];
+        $metrics = $this->indexMetrics($num, $page)['data'];
 
         $filtered = array_filter(
             $metrics,
@@ -162,25 +177,25 @@ class MetricActions
     /**
      * Update a specific Metric.
      *
-     * @param int   $id
+     * @param int   $metricId
      * @param array $metric
      *
      * @return bool
      */
-    public function updateMetric($id, array $metric)
+    public function updateMetric($metricId, array $metric)
     {
-        return $this->client->call('PUT', "metrics/$id", ['json' => $metric]);
+        return $this->client->call('PUT', "metrics/$metricId", ['json' => $metric]);
     }
 
     /**
      * Delete a specific Metric.
      *
-     * @param int $id
+     * @param int $metricId
      *
      * @return bool
      */
-    public function deleteMetric($id)
+    public function deleteMetric($metricId)
     {
-        return $this->client->call('DELETE', "metrics/$id");
+        return $this->client->call('DELETE', "metrics/$metricId");
     }
 }

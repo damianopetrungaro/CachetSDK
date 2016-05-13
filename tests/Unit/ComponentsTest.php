@@ -191,7 +191,8 @@ class ComponentsTest extends \PHPUnit_Framework_TestCase
     {
         $goodClient = ClientFactory::goodClient();
         $componentFactory = ComponentFactory::build($goodClient);
-        $components = $componentFactory->searchComponents($search, $by, true, 10);
+        $componentFactory->setCache(true);
+        $components = $componentFactory->searchComponents($search, $by, 10);
         foreach ($components as $component) {
             $this->assertArrayHasKey('id', $component);
         }

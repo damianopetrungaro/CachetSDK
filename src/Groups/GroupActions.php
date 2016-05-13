@@ -31,6 +31,13 @@ class GroupActions
     protected $cached = null;
 
     /**
+     * Cache status. If is true use cache.
+     *
+     * @var bool
+     */
+    private $cache = false;
+
+    /**
      * GroupActions constructor.
      *
      * @param CachetClient $client
@@ -38,6 +45,16 @@ class GroupActions
     public function __construct(CachetClient $client)
     {
         $this->client = $client;
+    }
+
+    /**
+     * Set the cache to true or false
+     *
+     * @param bool $status
+     */
+    public function setCache($status)
+    {
+        $this->cache = $status;
     }
 
     /**
@@ -73,13 +90,12 @@ class GroupActions
      *
      * @param int  $num
      * @param int  $page
-     * @param bool $cache
      *
      * @return array|bool
      */
-    public function indexGroups($num = 1000, $page = 1, $cache = false)
+    public function indexGroups($num = 1000, $page = 1)
     {
-        if ($cache != false) {
+        if ($this->cache != false) {
             return $this->cacheGroups($num, $page);
         }
 
@@ -98,13 +114,13 @@ class GroupActions
     /**
      * Get a specific Group.
      *
-     * @param int $id
+     * @param int $groupId
      *
      * @return bool
      */
-    public function getGroup($id)
+    public function getGroup($groupId)
     {
-        return $this->client->call('GET', "components/groups/$id");
+        return $this->client->call('GET', "components/groups/$groupId");
     }
 
     /**
@@ -112,16 +128,15 @@ class GroupActions
      *
      * @param string $search
      * @param string $by
-     * @param bool   $cache
      * @param int    $num
      * @param int    $page
      * @param int    $limit
      *
      * @return mixed
      */
-    public function searchGroups($search, $by, $cache = false, $limit = 1, $num = 1000, $page = 1)
+    public function searchGroups($search, $by, $limit = 1, $num = 1000, $page = 1)
     {
-        $groups = $this->indexGroups($num, $page, $cache)['data'];
+        $groups = $this->indexGroups($num, $page)['data'];
 
         $filtered = array_filter(
             $groups,
@@ -162,25 +177,25 @@ class GroupActions
     /**
      * Update a specific Group.
      *
-     * @param int   $id
+     * @param int   $groupId
      * @param array $group
      *
      * @return bool
      */
-    public function updateGroup($id, array $group)
+    public function updateGroup($groupId, array $group)
     {
-        return $this->client->call('PUT', "components/groups/$id", ['json' => $group]);
+        return $this->client->call('PUT', "components/groups/$groupId", ['json' => $group]);
     }
 
     /**
      * Delete a specific Group.
      *
-     * @param int $id
+     * @param int $groupId
      *
      * @return bool
      */
-    public function deleteGroup($id)
+    public function deleteGroup($groupId)
     {
-        return $this->client->call('DELETE', "components/groups/$id");
+        return $this->client->call('DELETE', "components/groups/$groupId");
     }
 }

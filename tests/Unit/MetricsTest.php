@@ -190,7 +190,8 @@ class MetricsTest extends \PHPUnit_Framework_TestCase
     {
         $goodClient = ClientFactory::goodClient();
         $metricFactory = MetricFactory::build($goodClient);
-        $metrics = $metricFactory->searchMetrics($search, $by, true, 10);
+        $metricFactory->setCache(true);
+        $metrics = $metricFactory->searchMetrics($search, $by, 10);
         foreach ($metrics as $metric) {
             $this->assertArrayHasKey('id', $metric);
         }

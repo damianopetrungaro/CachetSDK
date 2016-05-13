@@ -190,7 +190,8 @@ class GroupsTest extends \PHPUnit_Framework_TestCase
     {
         $goodClient = ClientFactory::goodClient();
         $groupFactory = GroupFactory::build($goodClient);
-        $groups = $groupFactory->searchGroups($search, $by, true, 10);
+        $groupFactory->setCache(true);
+        $groups = $groupFactory->searchGroups($search, $by, 10);
         foreach ($groups as $group) {
             $this->assertArrayHasKey('id', $group);
         }

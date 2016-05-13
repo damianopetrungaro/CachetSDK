@@ -31,6 +31,13 @@ class ComponentActions
     protected $cached = null;
 
     /**
+     * Cache status. If is true use cache.
+     *
+     * @var bool
+     */
+    private $cache = false;
+
+    /**
      * ComponentActions constructor.
      *
      * @param CachetClient $client
@@ -38,6 +45,16 @@ class ComponentActions
     public function __construct(CachetClient $client)
     {
         $this->client = $client;
+    }
+
+    /**
+     * Set the cache to true or false
+     *
+     * @param bool $status
+     */
+    public function setCache($status)
+    {
+        $this->cache = $status;
     }
 
     /**
@@ -73,13 +90,12 @@ class ComponentActions
      *
      * @param int  $num
      * @param int  $page
-     * @param bool $cache
      *
      * @return array|bool
      */
-    public function indexComponents($num = 1000, $page = 1, $cache = false)
+    public function indexComponents($num = 1000, $page = 1)
     {
-        if ($cache != false) {
+        if ($this->cache === true) {
             return $this->cacheComponents($num, $page);
         }
 
@@ -98,13 +114,13 @@ class ComponentActions
     /**
      * Get a specific Component.
      *
-     * @param int $id
+     * @param int $componentId
      *
      * @return bool
      */
-    public function getComponent($id)
+    public function getComponent($componentId)
     {
-        return $this->client->call('GET', "components/$id");
+        return $this->client->call('GET', "components/$componentId");
     }
 
     /**
@@ -112,16 +128,15 @@ class ComponentActions
      *
      * @param string $search
      * @param string $by
-     * @param bool   $cache
      * @param int    $num
      * @param int    $page
      * @param int    $limit
      *
      * @return mixed
      */
-    public function searchComponents($search, $by, $cache = false, $limit = 1, $num = 1000, $page = 1)
+    public function searchComponents($search, $by, $limit = 1, $num = 1000, $page = 1)
     {
-        $components = $this->indexComponents($num, $page, $cache)['data'];
+        $components = $this->indexComponents($num, $page)['data'];
 
         $filtered = array_filter(
             $components,
@@ -162,25 +177,25 @@ class ComponentActions
     /**
      * Update a specific Component.
      *
-     * @param int   $id
+     * @param int   $componentId
      * @param array $component
      *
      * @return bool
      */
-    public function updateComponent($id, array $component)
+    public function updateComponent($componentId, array $component)
     {
-        return $this->client->call('PUT', "components/$id", ['json' => $component]);
+        return $this->client->call('PUT', "components/$componentId", ['json' => $component]);
     }
 
     /**
      * Delete a specific Component.
      *
-     * @param int $id
+     * @param int $componentId
      *
      * @return bool
      */
-    public function deleteComponent($id)
+    public function deleteComponent($componentId)
     {
-        return $this->client->call('DELETE', "components/$id");
+        return $this->client->call('DELETE', "components/$componentId");
     }
 }

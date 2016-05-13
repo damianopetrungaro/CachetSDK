@@ -145,7 +145,8 @@ class SubscribersTest extends \PHPUnit_Framework_TestCase
     {
         $goodClient = ClientFactory::goodClient();
         $subscriberFactory = SubscriberFactory::build($goodClient);
-        $subscribers = $subscriberFactory->searchSubscribers($search, $by, true, 10);
+        $subscriberFactory->setCache(true);
+        $subscribers = $subscriberFactory->searchSubscribers($search, $by, 10);
         foreach ($subscribers as $subscriber) {
             $this->assertArrayHasKey('id', $subscriber);
         }

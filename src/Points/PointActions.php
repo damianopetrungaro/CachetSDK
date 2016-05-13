@@ -31,6 +31,13 @@ class PointActions
     protected $cached = null;
 
     /**
+     * Cache status. If is true use cache.
+     *
+     * @var bool
+     */
+    private $cache = false;
+
+    /**
      * PointActions constructor.
      *
      * @param CachetClient $client
@@ -38,6 +45,16 @@ class PointActions
     public function __construct(CachetClient $client)
     {
         $this->client = $client;
+    }
+
+    /**
+     * Set the cache to true or false
+     *
+     * @param bool $status
+     */
+    public function setCache($status)
+    {
+        $this->cache = $status;
     }
 
     /**
@@ -76,13 +93,12 @@ class PointActions
      * @param int  $metricId
      * @param int  $num
      * @param int  $page
-     * @param bool $cache
      *
      * @return array|bool
      */
-    public function indexPoints($metricId, $num = 1000, $page = 1, $cache = false)
+    public function indexPoints($metricId, $num = 1000, $page = 1)
     {
-        if ($cache != false) {
+        if ($this->cache != false) {
             return $this->cachePoints($metricId, $num, $page);
         }
 
@@ -104,16 +120,15 @@ class PointActions
      * @param $metricId
      * @param string $search
      * @param string $by
-     * @param bool   $cache
      * @param int    $limit
      * @param int    $num
      * @param int    $page
      *
      * @return mixed
      */
-    public function searchPoints($metricId, $search, $by, $cache = false, $limit = 1, $num = 1000, $page = 1)
+    public function searchPoints($metricId, $search, $by, $limit = 1, $num = 1000, $page = 1)
     {
-        $points = $this->indexPoints($metricId, $num, $page, $cache)['data'];
+        $points = $this->indexPoints($metricId, $num, $page)['data'];
 
         $filtered = array_filter(
             $points,
@@ -142,7 +157,7 @@ class PointActions
     /**
      * Store a Point.
      *
-     * @param int   $metricId
+     * @param int $metricId
      * @param array $point
      *
      * @return bool
@@ -155,13 +170,13 @@ class PointActions
     /**
      * Delete a specific Point.
      *
-     * @param $metricId
-     * @param int $id
+     * @param int $metricId
+     * @param int $PointId
      *
      * @return bool
      */
-    public function deletePoint($metricId, $id)
+    public function deletePoint($metricId, $PointId)
     {
-        return $this->client->call('DELETE', "metrics/$metricId/points/$id");
+        return $this->client->call('DELETE', "metrics/$metricId/points/$PointId");
     }
 }
