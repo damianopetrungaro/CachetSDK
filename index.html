@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Cachetsdk by damianopetrungaro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Cachetsdk</h1>
+      <h2 class="project-tagline">A PHP SDK for Cachet, providing a full functionality access.</h2>
+      <a href="https://github.com/damianopetrungaro/CachetSDK" class="btn">View on GitHub</a>
+      <a href="https://github.com/damianopetrungaro/CachetSDK/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/damianopetrungaro/CachetSDK/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="cachetsdk" class="anchor" href="#cachetsdk" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CachetSDK</h1>
+
+<p>A PHP SDK for <a href="https://cachethq.io/">Cachet</a>, providing a full functionality access.</p>
+
+<p><a href="https://codeclimate.com/github/damianopetrungaro/CachetSDK"><img src="https://codeclimate.com/github/damianopetrungaro/CachetSDK/badges/gpa.svg" alt="Code Climate"></a> <a href="https://travis-ci.org/damianopetrungaro/CachetSDK"><img src="https://travis-ci.org/damianopetrungaro/CachetSDK.svg?branch=master" alt="Build Status"></a></p>
+
+<h4>
+<a id="click-here-for-the-api-documentation-of-sdk" class="anchor" href="#click-here-for-the-api-documentation-of-sdk" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Click <a href="http://cachetsdk.damianopetrungaro.com/">here for the API Documentation of SDK</a>
+</h4>
+
+<h4>
+<a id="available-elements-and-method" class="anchor" href="#available-elements-and-method" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Available Elements and method</h4>
+
+<ul>
+<li>
+<a href="#general">General</a>
+
+<ul>
+<li><a href="#general-ping">ping</a></li>
+<li><a href="#general-version">version</a></li>
+</ul>
+</li>
+<li>
+<a href="#components">Components</a>
+
+<ul>
+<li><a href="#components-cache">cacheComponents</a></li>
+<li><a href="#components-delete">deleteComponent</a></li>
+<li><a href="#components-get">getComponent</a></li>
+<li><a href="#components-index">indexComponents</a></li>
+<li><a href="#components-search">searchComponent</a></li>
+<li><a href="#components-store">storeComponent</a></li>
+<li><a href="#components-update">updateComponent</a></li>
+</ul>
+</li>
+<li>
+<a href="#groups">Groups</a>
+
+<ul>
+<li><a href="#groups-cache">cacheGroups</a></li>
+<li><a href="#groups-delete">deleteGroup</a></li>
+<li><a href="#groups-get">getGroup</a></li>
+<li><a href="#groups-index">indexGroups</a></li>
+<li><a href="#groups-search">searchGroup</a></li>
+<li><a href="#groups-store">storeGroup</a></li>
+<li><a href="#groups-update">updateGroup</a></li>
+</ul>
+</li>
+<li>
+<a href="#incidents">Incidents</a>
+
+<ul>
+<li><a href="#incidents-cache">cacheIncidents</a></li>
+<li><a href="#incidents-delete">deleteIncident</a></li>
+<li><a href="#incidents-get">getIncident</a></li>
+<li><a href="#incidents-index">indexIncidents</a></li>
+<li><a href="#incidents-search">searchIncident</a></li>
+<li><a href="#incidents-store">storeIncident</a></li>
+<li><a href="#incidents-update">updateIncident</a></li>
+</ul>
+</li>
+<li>
+<a href="#metrics">Metrics</a>
+
+<ul>
+<li><a href="#metrics-cache">cacheMetrics</a></li>
+<li><a href="#metrics-delete">deleteMetric</a></li>
+<li><a href="#metrics-get">getMetric</a></li>
+<li><a href="#metrics-index">indexMetrics</a></li>
+<li><a href="#metrics-search">searchMetric</a></li>
+<li><a href="#metrics-store">storeMetric</a></li>
+</ul>
+</li>
+<li>
+<a href="#points">Points</a>
+
+<ul>
+<li><a href="#points-cache">cachePoints</a></li>
+<li><a href="#points-delete">deletePoint</a></li>
+<li><a href="#points-index">indexPoints</a></li>
+<li><a href="#points-search">searchPoint</a></li>
+<li><a href="#points-store">storePoint</a></li>
+</ul>
+</li>
+<li>
+<a href="#subscribers">Subscribers</a>
+
+<ul>
+<li><a href="#subscribers-cache">cacheSubscribers</a></li>
+<li><a href="#subscribers-delete">deleteSubscriber</a></li>
+<li><a href="#subscribers-index">indexSubscribers</a></li>
+<li><a href="#subscribers-search">searchSubscriber</a></li>
+<li><a href="#subscribers-store">storeSubscriber</a></li>
+</ul>
+</li>
+<li><a href="#exceptions">Exceptions</a></li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Add <code>damianopetrungaro/cachet-sdk</code> to <code>composer.json</code>.</p>
+
+<div class="highlight highlight-source-json"><pre>   <span class="pl-s"><span class="pl-pds">"</span>damianopetrungaro/cachet-sdk<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>^0.8.0<span class="pl-pds">"</span></span></pre></div>
+
+<p>Run <code>composer update</code> to pull down the latest version of CachetSDK.</p>
+
+<p>Or install it directly from the command line using</p>
+
+<div class="highlight highlight-source-shell"><pre>composer require <span class="pl-s"><span class="pl-pds">"</span>damianopetrungaro/cachet-sdk<span class="pl-pds">"</span></span></pre></div>
+
+<h2>
+<a id="cachet-client" class="anchor" href="#cachet-client" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Cachet Client</h2>
+
+<p>For create a cachet client you need an endpoint and a token, those data are available on your Cachet site.</p>
+
+<pre><code>$cachetClient = new CachetClient('endPointGoesHere/api/v1', 'tokenGoesHere');
+</code></pre>
+
+<p>A client MUST be injected to a ElementFactory. This allow you to use multiple sites of cachet in one shot!</p>
+
+<p>All the factories are documented in the first part of each element.</p>
+
+<h2>
+<a id="general" class="anchor" href="#general" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>General</h2>
+
+<h3>
+<a id="init-a-general-element" class="anchor" href="#init-a-general-element" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Init a general element</h3>
+
+<p>For use one or more action for the General element, you must init an instance of GeneralActions.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$generalManager</span> <span class="pl-k">=</span> <span class="pl-c1">GeneralFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span></pre></div>
+
+<hr>
+
+<h3>
+<a id="general-ping" class="anchor" href="#general-ping" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>General Ping</h3>
+
+<p>This method ping your cachet site.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$generalManager</span> <span class="pl-k">=</span> <span class="pl-c1">GeneralFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$pong</span> <span class="pl-k">=</span> <span class="pl-smi">$generalManager</span><span class="pl-k">-&gt;</span>ping();</span></pre></div>
+
+<hr>
+
+<h3>
+<a id="general-version" class="anchor" href="#general-version" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>General Version</h3>
+
+<p>This method get your cachet site version.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$generalManager</span> <span class="pl-k">=</span> <span class="pl-c1">GeneralFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$version</span> <span class="pl-k">=</span> <span class="pl-smi">$generalManager</span><span class="pl-k">-&gt;</span>version();</span></pre></div>
+
+<hr>
+
+<hr>
+
+<hr>
+
+<h2>
+<a id="components" class="anchor" href="#components" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Components</h2>
+
+<h3>
+<a id="init-a-component-element" class="anchor" href="#init-a-component-element" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Init a component element</h3>
+
+<p>For use one or more action for the Component element, you must init an instance of ComponentsActions.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$componentManager</span> <span class="pl-k">=</span> <span class="pl-c1">ComponentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span></pre></div>
+
+<hr>
+
+<h3>
+<a id="components-cache" class="anchor" href="#components-cache" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Components Cache</h3>
+
+<p>The cache method allows you to call multiple time the API without kill the performance.
+This method is used in <a href="#components-index">indexComponents</a> and <a href="#components-search">searchComponent</a>, and use the cachet pagination.</p>
+
+<p>Anyway you can instance it manually.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$componentManager</span> <span class="pl-k">=</span> <span class="pl-c1">ComponentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$cachedComponents</span> <span class="pl-k">=</span> <span class="pl-smi">$componentManager</span><span class="pl-k">-&gt;</span>cacheComponents(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
+
+<h6>
+<a id="num-int---default--1000--number-of-component-to-return-from-a-single-page-uses-cachet-pagination" class="anchor" href="#num-int---default--1000--number-of-component-to-return-from-a-single-page-uses-cachet-pagination" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of component to return from a single page (uses cachet pagination).</h6>
+
+<h6>
+<a id="page-int---default--1--page-number-uses-cachet-pagination" class="anchor" href="#page-int---default--1--page-number-uses-cachet-pagination" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$page (int - default = 1) = Page number (uses cachet pagination).</h6>
+
+<hr>
+
+<h3>
+<a id="components-delete" class="anchor" href="#components-delete" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Components Delete</h3>
+
+<p>The delete method allows you to delete a specific component from cachet.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$componentManager</span> <span class="pl-k">=</span> <span class="pl-c1">ComponentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$deleteComponent</span> <span class="pl-k">=</span> <span class="pl-smi">$componentManager</span><span class="pl-k">-&gt;</span>deleteComponent(<span class="pl-smi">$id</span>);</span></pre></div>
+
+<h6>
+<a id="id-int--component-id" class="anchor" href="#id-int--component-id" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$id (int) = Component ID.</h6>
+
+<hr>
+
+<h3>
+<a id="components-get" class="anchor" href="#components-get" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Components Get</h3>
+
+<p>The get method allows you to get a specific component from cachet.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$componentManager</span> <span class="pl-k">=</span> <span class="pl-c1">ComponentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$getComponent</span> <span class="pl-k">=</span> <span class="pl-smi">$componentManager</span><span class="pl-k">-&gt;</span>getComponent(<span class="pl-smi">$id</span>);</span></pre></div>
+
+<h6>
+<a id="id-int--component-id-1" class="anchor" href="#id-int--component-id-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$id (int) = Component ID.</h6>
+
+<hr>
+
+<h3>
+<a id="components-index" class="anchor" href="#components-index" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Components Index</h3>
+
+<p>The index method allows you to get a list of component from cachet.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$componentManager</span> <span class="pl-k">=</span> <span class="pl-c1">ComponentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$indexComponents</span> <span class="pl-k">=</span> <span class="pl-smi">$componentManager</span><span class="pl-k">-&gt;</span>indexComponents(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>, <span class="pl-smi">$cache</span>)</span></pre></div>
+
+<h6>
+<a id="num-int---default--1000--number-of-component-to-return-from-a-single-page-uses-cachet-pagination-1" class="anchor" href="#num-int---default--1000--number-of-component-to-return-from-a-single-page-uses-cachet-pagination-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of component to return from a single page (uses cachet pagination).</h6>
+
+<h6>
+<a id="page-int---default--1--page-number-uses-cachet-pagination-1" class="anchor" href="#page-int---default--1--page-number-uses-cachet-pagination-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$page (int - default = 1) = Page number (uses cachet pagination).</h6>
+
+<h6>
+<a id="cache-bool---default--true--use-cache-method" class="anchor" href="#cache-bool---default--true--use-cache-method" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$cache (bool - default = true) = Use cache method.</h6>
+
+<hr>
+
+<h3>
+<a id="components-search" class="anchor" href="#components-search" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Components Search</h3>
+
+<p>The search method allows you to get one or more component from cachet searching by key's value.</p>
+
+<p>!!! THIS METHOD DON'T RETURN A STANDARD CACHET RESPONSE !!!
+!!! RETURN A SIMPLE ARRAY WITH ALL THE FOUND COMPONENTS !!!</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$componentManager</span> <span class="pl-k">=</span> <span class="pl-c1">ComponentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$components</span> <span class="pl-k">=</span> <span class="pl-smi">$componentManager</span><span class="pl-k">-&gt;</span>searchComponents(<span class="pl-smi">$search</span>, <span class="pl-smi">$by</span>, <span class="pl-smi">$cache</span>, <span class="pl-smi">$limit</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
+
+<h6>
+<a id="search-mixed--value-to-find" class="anchor" href="#search-mixed--value-to-find" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$search (mixed) = Value to find.</h6>
+
+<h6>
+<a id="by-string--column-where-search-the-value" class="anchor" href="#by-string--column-where-search-the-value" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$by (string) = Column where search the value.</h6>
+
+<h6>
+<a id="cache-bool---default--true--use-cache-method-1" class="anchor" href="#cache-bool---default--true--use-cache-method-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$cache (bool - default = true) = Use cache method.</h6>
+
+<h6>
+<a id="limit-int---default--1--number-of-components-to-return" class="anchor" href="#limit-int---default--1--number-of-components-to-return" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$limit (int - default = 1) = Number of components to return.</h6>
+
+<h6>
+<a id="num-int---default--1000--number-of-component-to-return-from-a-single-page-uses-cachet-pagination-2" class="anchor" href="#num-int---default--1000--number-of-component-to-return-from-a-single-page-uses-cachet-pagination-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of component to return from a single page (uses cachet pagination).</h6>
+
+<h6>
+<a id="page-int---default--1--page-number-uses-cachet-pagination-2" class="anchor" href="#page-int---default--1--page-number-uses-cachet-pagination-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$page (int - default = 1) = Page number (uses cachet pagination).</h6>
+
+<hr>
+
+<h3>
+<a id="components-store" class="anchor" href="#components-store" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Components Store</h3>
+
+<p>The store method allows you to add a component.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$componentManager</span> <span class="pl-k">=</span> <span class="pl-c1">ComponentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$component</span> <span class="pl-k">=</span> <span class="pl-smi">$componentManager</span><span class="pl-k">-&gt;</span>storeComponent(<span class="pl-smi">$component</span>)</span></pre></div>
+
+<h6>
+<a id="component-array--for-required-params-read-the-cachet-doc" class="anchor" href="#component-array--for-required-params-read-the-cachet-doc" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$component (array) = For required params read the <a href="https://docs.cachethq.io/docs">Cachet Doc</a>.</h6>
+
+<pre><code>$sampleArray = [
+    'name' =&gt; 'component name',
+    'description' =&gt; 'component description',
+    'link' =&gt; 'component link',
+    'status' =&gt; 1,
+    'order' =&gt; 1,
+    'group_id' =&gt; 0,
+    'enabled' =&gt; 1,
+];
+</code></pre>
+
+<hr>
+
+<h3>
+<a id="components-update" class="anchor" href="#components-update" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Components Update</h3>
+
+<p>The update method allows you to update a specific component.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$componentManager</span> <span class="pl-k">=</span> <span class="pl-c1">ComponentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$component</span> <span class="pl-k">=</span> <span class="pl-smi">$componentManager</span><span class="pl-k">-&gt;</span>updateComponent(<span class="pl-smi">$id</span>, <span class="pl-smi">$component</span>)</span></pre></div>
+
+<h6>
+<a id="id-int--component-id-2" class="anchor" href="#id-int--component-id-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$id (int) = Component ID.</h6>
+
+<h6>
+<a id="component-array--for-required-params-read-the-cachet-doc-1" class="anchor" href="#component-array--for-required-params-read-the-cachet-doc-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$component (array) = For required params read the <a href="https://docs.cachethq.io/docs">Cachet Doc</a>.</h6>
+
+<pre><code>$sampleArray = [
+    'name' =&gt; 'component name',
+    'description' =&gt; 'component description',
+    'link' =&gt; 'component link',
+    'status' =&gt; 1,
+    'order' =&gt; 1,
+    'group_id' =&gt; 0,
+    'enabled' =&gt; 1,
+];
+</code></pre>
+
+<hr>
+
+<hr>
+
+<hr>
+
+<h2>
+<a id="groups" class="anchor" href="#groups" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Groups</h2>
+
+<h3>
+<a id="init-a-group-element" class="anchor" href="#init-a-group-element" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Init a group element</h3>
+
+<p>For use one or more action for the Group element, you must init an instance of GroupsActions.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$groupManager</span> <span class="pl-k">=</span> <span class="pl-c1">GroupFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span></pre></div>
+
+<hr>
+
+<h3>
+<a id="groups-cache" class="anchor" href="#groups-cache" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Groups Cache</h3>
+
+<p>The cache method allows you to call multiple time the API without kill the performance.
+This method is used in <a href="#groups-index">indexGroups</a> and <a href="#groups-search">searchGroup</a>, and use the cachet pagination.</p>
+
+<p>Anyway you can instance it manually.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$groupManager</span> <span class="pl-k">=</span> <span class="pl-c1">GroupFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$cachedGroups</span> <span class="pl-k">=</span> <span class="pl-smi">$groupManager</span><span class="pl-k">-&gt;</span>cacheGroups(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
+
+<h6>
+<a id="num-int---default--1000--number-of-group-to-return-from-a-single-page-uses-cachet-pagination" class="anchor" href="#num-int---default--1000--number-of-group-to-return-from-a-single-page-uses-cachet-pagination" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of group to return from a single page (uses cachet pagination).</h6>
+
+<h6>
+<a id="page-int---default--1--page-number-uses-cachet-pagination-3" class="anchor" href="#page-int---default--1--page-number-uses-cachet-pagination-3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$page (int - default = 1) = Page number (uses cachet pagination).</h6>
+
+<hr>
+
+<h3>
+<a id="groups-delete" class="anchor" href="#groups-delete" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Groups Delete</h3>
+
+<p>The delete method allows you to delete a specific group from cachet.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$groupManager</span> <span class="pl-k">=</span> <span class="pl-c1">GroupFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$deleteGroup</span> <span class="pl-k">=</span> <span class="pl-smi">$groupManager</span><span class="pl-k">-&gt;</span>deleteGroup(<span class="pl-smi">$id</span>);</span></pre></div>
+
+<h6>
+<a id="id-int--group-id" class="anchor" href="#id-int--group-id" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$id (int) = Group ID.</h6>
+
+<hr>
+
+<h3>
+<a id="groups-get" class="anchor" href="#groups-get" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Groups Get</h3>
+
+<p>The get method allows you to get a specific group from cachet.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$groupManager</span> <span class="pl-k">=</span> <span class="pl-c1">GroupFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$getGroup</span> <span class="pl-k">=</span> <span class="pl-smi">$groupManager</span><span class="pl-k">-&gt;</span>getGroup(<span class="pl-smi">$id</span>);</span></pre></div>
+
+<h6>
+<a id="id-int--group-id-1" class="anchor" href="#id-int--group-id-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$id (int) = Group ID.</h6>
+
+<hr>
+
+<h3>
+<a id="groups-index" class="anchor" href="#groups-index" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Groups Index</h3>
+
+<p>The index method allows you to get a list of group from cachet.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$groupManager</span> <span class="pl-k">=</span> <span class="pl-c1">GroupFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$indexGroups</span> <span class="pl-k">=</span> <span class="pl-smi">$groupManager</span><span class="pl-k">-&gt;</span>indexGroups(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>, <span class="pl-smi">$cache</span>)</span></pre></div>
+
+<h6>
+<a id="num-int---default--1000--number-of-group-to-return-from-a-single-page-uses-cachet-pagination-1" class="anchor" href="#num-int---default--1000--number-of-group-to-return-from-a-single-page-uses-cachet-pagination-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of group to return from a single page (uses cachet pagination).</h6>
+
+<h6>
+<a id="page-int---default--1--page-number-uses-cachet-pagination-4" class="anchor" href="#page-int---default--1--page-number-uses-cachet-pagination-4" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$page (int - default = 1) = Page number (uses cachet pagination).</h6>
+
+<h6>
+<a id="cache-bool---default--true--use-cache-method-2" class="anchor" href="#cache-bool---default--true--use-cache-method-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$cache (bool - default = true) = Use cache method.</h6>
+
+<hr>
+
+<h3>
+<a id="groups-search" class="anchor" href="#groups-search" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Groups Search</h3>
+
+<p>The search method allows you to get one or more group from cachet searching by key's value.</p>
+
+<p>!!! THIS METHOD DON'T RETURN A STANDARD CACHET RESPONSE !!!
+!!! RETURN A SIMPLE ARRAY WITH ALL THE FOUND COMPONENTS !!!</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$groupManager</span> <span class="pl-k">=</span> <span class="pl-c1">GroupFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$groups</span> <span class="pl-k">=</span> <span class="pl-smi">$groupManager</span><span class="pl-k">-&gt;</span>searchGroups(<span class="pl-smi">$search</span>, <span class="pl-smi">$by</span>, <span class="pl-smi">$cache</span>, <span class="pl-smi">$limit</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
+
+<h6>
+<a id="search-mixed--value-to-find-1" class="anchor" href="#search-mixed--value-to-find-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$search (mixed) = Value to find.</h6>
+
+<h6>
+<a id="by-string--column-where-search-the-value-1" class="anchor" href="#by-string--column-where-search-the-value-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$by (string) = Column where search the value.</h6>
+
+<h6>
+<a id="cache-bool---default--true--use-cache-method-3" class="anchor" href="#cache-bool---default--true--use-cache-method-3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$cache (bool - default = true) = Use cache method.</h6>
+
+<h6>
+<a id="limit-int---default--1--number-of-groups-to-return" class="anchor" href="#limit-int---default--1--number-of-groups-to-return" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$limit (int - default = 1) = Number of groups to return.</h6>
+
+<h6>
+<a id="num-int---default--1000--number-of-group-to-return-from-a-single-page-uses-cachet-pagination-2" class="anchor" href="#num-int---default--1000--number-of-group-to-return-from-a-single-page-uses-cachet-pagination-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of group to return from a single page (uses cachet pagination).</h6>
+
+<h6>
+<a id="page-int---default--1--page-number-uses-cachet-pagination-5" class="anchor" href="#page-int---default--1--page-number-uses-cachet-pagination-5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$page (int - default = 1) = Page number (uses cachet pagination).</h6>
+
+<hr>
+
+<h3>
+<a id="groups-store" class="anchor" href="#groups-store" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Groups Store</h3>
+
+<p>The store method allows you to add a group.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$groupManager</span> <span class="pl-k">=</span> <span class="pl-c1">GroupFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$group</span> <span class="pl-k">=</span> <span class="pl-smi">$groupManager</span><span class="pl-k">-&gt;</span>storeGroup(<span class="pl-smi">$group</span>)</span></pre></div>
+
+<h6>
+<a id="group-array--for-required-params-read-the-cachet-doc" class="anchor" href="#group-array--for-required-params-read-the-cachet-doc" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$group (array) = For required params read the <a href="https://docs.cachethq.io/docs">Cachet Doc</a>.</h6>
+
+<pre><code>$sampleArray = [
+  'name' =&gt; 'new group name',
+  'order' =&gt; 1,
+  'collapsed' =&gt; 0,
+];
+</code></pre>
+
+<hr>
+
+<h3>
+<a id="groups-update" class="anchor" href="#groups-update" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Groups Update</h3>
+
+<p>The update method allows you to update a specific group.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$groupManager</span> <span class="pl-k">=</span> <span class="pl-c1">GroupFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$group</span> <span class="pl-k">=</span> <span class="pl-smi">$groupManager</span><span class="pl-k">-&gt;</span>updateGroup(<span class="pl-smi">$id</span>, <span class="pl-smi">$group</span>)</span></pre></div>
+
+<h6>
+<a id="id-int--group-id-2" class="anchor" href="#id-int--group-id-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$id (int) = Group ID.</h6>
+
+<h6>
+<a id="group-array--for-required-params-read-the-cachet-doc-1" class="anchor" href="#group-array--for-required-params-read-the-cachet-doc-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$group (array) = For required params read the <a href="https://docs.cachethq.io/docs">Cachet Doc</a>.</h6>
+
+<pre><code>$sampleArray = [
+  'name' =&gt; 'new group name',
+  'order' =&gt; 1,
+  'collapsed' =&gt; 0,
+];
+</code></pre>
+
+<hr>
+
+<hr>
+
+<hr>
+
+<h2>
+<a id="incidents" class="anchor" href="#incidents" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Incidents</h2>
+
+<h3>
+<a id="init-a-incident-element" class="anchor" href="#init-a-incident-element" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Init a incident element</h3>
+
+<p>For use one or more action for the Incident element, you must init an instance of IncidentsActions.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$incidentManager</span> <span class="pl-k">=</span> <span class="pl-c1">IncidentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span></pre></div>
+
+<hr>
+
+<h3>
+<a id="incidents-cache" class="anchor" href="#incidents-cache" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Incidents Cache</h3>
+
+<p>The cache method allows you to call multiple time the API without kill the performance.
+This method is used in <a href="#incidents-index">indexIncidents</a> and <a href="#incidents-search">searchIncident</a>, and use the cachet pagination.</p>
+
+<p>Anyway you can instance it manually.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$incidentManager</span> <span class="pl-k">=</span> <span class="pl-c1">IncidentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$cachedIncidents</span> <span class="pl-k">=</span> <span class="pl-smi">$incidentManager</span><span class="pl-k">-&gt;</span>cacheIncidents(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
+
+<h6>
+<a id="num-int---default--1000--number-of-incident-to-return-from-a-single-page-uses-cachet-pagination" class="anchor" href="#num-int---default--1000--number-of-incident-to-return-from-a-single-page-uses-cachet-pagination" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of incident to return from a single page (uses cachet pagination).</h6>
+
+<h6>
+<a id="page-int---default--1--page-number-uses-cachet-pagination-6" class="anchor" href="#page-int---default--1--page-number-uses-cachet-pagination-6" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$page (int - default = 1) = Page number (uses cachet pagination).</h6>
+
+<hr>
+
+<h3>
+<a id="incidents-delete" class="anchor" href="#incidents-delete" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Incidents Delete</h3>
+
+<p>The delete method allows you to delete a specific incident from cachet.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$incidentManager</span> <span class="pl-k">=</span> <span class="pl-c1">IncidentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$deleteIncident</span> <span class="pl-k">=</span> <span class="pl-smi">$incidentManager</span><span class="pl-k">-&gt;</span>deleteIncident(<span class="pl-smi">$id</span>);</span></pre></div>
+
+<h6>
+<a id="id-int--incident-id" class="anchor" href="#id-int--incident-id" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$id (int) = Incident ID.</h6>
+
+<hr>
+
+<h3>
+<a id="incidents-get" class="anchor" href="#incidents-get" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Incidents Get</h3>
+
+<p>The get method allows you to get a specific incident from cachet.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$incidentManager</span> <span class="pl-k">=</span> <span class="pl-c1">IncidentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$getIncident</span> <span class="pl-k">=</span> <span class="pl-smi">$incidentManager</span><span class="pl-k">-&gt;</span>getIncident(<span class="pl-smi">$id</span>);</span></pre></div>
+
+<h6>
+<a id="id-int--incident-id-1" class="anchor" href="#id-int--incident-id-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$id (int) = Incident ID.</h6>
+
+<hr>
+
+<h3>
+<a id="incidents-index" class="anchor" href="#incidents-index" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Incidents Index</h3>
+
+<p>The index method allows you to get a list of incident from cachet.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$incidentManager</span> <span class="pl-k">=</span> <span class="pl-c1">IncidentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$indexIncidents</span> <span class="pl-k">=</span> <span class="pl-smi">$incidentManager</span><span class="pl-k">-&gt;</span>indexIncidents(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>, <span class="pl-smi">$cache</span>)</span></pre></div>
+
+<h6>
+<a id="num-int---default--1000--number-of-incident-to-return-from-a-single-page-uses-cachet-pagination-1" class="anchor" href="#num-int---default--1000--number-of-incident-to-return-from-a-single-page-uses-cachet-pagination-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of incident to return from a single page (uses cachet pagination).</h6>
+
+<h6>
+<a id="page-int---default--1--page-number-uses-cachet-pagination-7" class="anchor" href="#page-int---default--1--page-number-uses-cachet-pagination-7" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$page (int - default = 1) = Page number (uses cachet pagination).</h6>
+
+<h6>
+<a id="cache-bool---default--true--use-cache-method-4" class="anchor" href="#cache-bool---default--true--use-cache-method-4" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$cache (bool - default = true) = Use cache method.</h6>
+
+<hr>
+
+<h3>
+<a id="incidents-search" class="anchor" href="#incidents-search" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Incidents Search</h3>
+
+<p>The search method allows you to get one or more incident from cachet searching by key's value.</p>
+
+<p>!!! THIS METHOD DON'T RETURN A STANDARD CACHET RESPONSE !!!
+!!! RETURN A SIMPLE ARRAY WITH ALL THE FOUND COMPONENTS !!!</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$incidentManager</span> <span class="pl-k">=</span> <span class="pl-c1">IncidentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$incidents</span> <span class="pl-k">=</span> <span class="pl-smi">$incidentManager</span><span class="pl-k">-&gt;</span>searchIncidents(<span class="pl-smi">$search</span>, <span class="pl-smi">$by</span>, <span class="pl-smi">$cache</span>, <span class="pl-smi">$limit</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
+
+<h6>
+<a id="search-mixed--value-to-find-2" class="anchor" href="#search-mixed--value-to-find-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$search (mixed) = Value to find.</h6>
+
+<h6>
+<a id="by-string--column-where-search-the-value-2" class="anchor" href="#by-string--column-where-search-the-value-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$by (string) = Column where search the value.</h6>
+
+<h6>
+<a id="cache-bool---default--true--use-cache-method-5" class="anchor" href="#cache-bool---default--true--use-cache-method-5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$cache (bool - default = true) = Use cache method.</h6>
+
+<h6>
+<a id="limit-int---default--1--number-of-incidents-to-return" class="anchor" href="#limit-int---default--1--number-of-incidents-to-return" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$limit (int - default = 1) = Number of incidents to return.</h6>
+
+<h6>
+<a id="num-int---default--1000--number-of-incident-to-return-from-a-single-page-uses-cachet-pagination-2" class="anchor" href="#num-int---default--1000--number-of-incident-to-return-from-a-single-page-uses-cachet-pagination-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of incident to return from a single page (uses cachet pagination).</h6>
+
+<h6>
+<a id="page-int---default--1--page-number-uses-cachet-pagination-8" class="anchor" href="#page-int---default--1--page-number-uses-cachet-pagination-8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$page (int - default = 1) = Page number (uses cachet pagination).</h6>
+
+<hr>
+
+<h3>
+<a id="incidents-store" class="anchor" href="#incidents-store" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Incidents Store</h3>
+
+<p>The store method allows you to add a incident.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$incidentManager</span> <span class="pl-k">=</span> <span class="pl-c1">IncidentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$incident</span> <span class="pl-k">=</span> <span class="pl-smi">$incidentManager</span><span class="pl-k">-&gt;</span>storeIncident(<span class="pl-smi">$incident</span>)</span></pre></div>
+
+<h6>
+<a id="incident-array--for-required-params-read-the-cachet-doc" class="anchor" href="#incident-array--for-required-params-read-the-cachet-doc" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$incident (array) = For required params read the <a href="https://docs.cachethq.io/docs">Cachet Doc</a>.</h6>
+
+<pre><code>$sampleArray = [
+  'name' =&gt; 'incident name',
+  'message' =&gt; 'incident message',
+  'status' =&gt; 1,
+  'visible' =&gt; 1,
+  'component_id' =&gt; 1,
+  'component_status' =&gt; 1,
+  'notify' =&gt; 1
+];
+</code></pre>
+
+<hr>
+
+<h3>
+<a id="incidents-update" class="anchor" href="#incidents-update" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Incidents Update</h3>
+
+<p>The update method allows you to update a specific incident.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$incidentManager</span> <span class="pl-k">=</span> <span class="pl-c1">IncidentFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$incident</span> <span class="pl-k">=</span> <span class="pl-smi">$incidentManager</span><span class="pl-k">-&gt;</span>updateIncident(<span class="pl-smi">$id</span>, <span class="pl-smi">$incident</span>)</span></pre></div>
+
+<h6>
+<a id="id-int--incident-id-2" class="anchor" href="#id-int--incident-id-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$id (int) = Incident ID.</h6>
+
+<h6>
+<a id="incident-array--for-required-params-read-the-cachet-doc-1" class="anchor" href="#incident-array--for-required-params-read-the-cachet-doc-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$incident (array) = For required params read the <a href="https://docs.cachethq.io/docs">Cachet Doc</a>.</h6>
+
+<pre><code>$sampleArray = [
+  'name' =&gt; 'incident name',
+  'message' =&gt; 'incident message',
+  'status' =&gt; 1,
+  'visible' =&gt; 1,
+  'component_id' =&gt; 1,
+  'component_status' =&gt; 1,
+  'notify' =&gt; 1
+];
+</code></pre>
+
+<hr>
+
+<hr>
+
+<hr>
+
+<h2>
+<a id="metrics" class="anchor" href="#metrics" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Metrics</h2>
+
+<h3>
+<a id="init-a-metric-element" class="anchor" href="#init-a-metric-element" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Init a metric element</h3>
+
+<p>For use one or more action for the Metric element, you must init an instance of MetricsActions.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$metricManager</span> <span class="pl-k">=</span> <span class="pl-c1">MetricFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span></pre></div>
+
+<hr>
+
+<h3>
+<a id="metrics-cache" class="anchor" href="#metrics-cache" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Metrics Cache</h3>
+
+<p>The cache method allows you to call multiple time the API without kill the performance.
+This method is used in <a href="#metrics-index">indexMetrics</a> and <a href="#metrics-search">searchMetric</a>, and use the cachet pagination.</p>
+
+<p>Anyway you can instance it manually.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$metricManager</span> <span class="pl-k">=</span> <span class="pl-c1">MetricFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$cachedMetrics</span> <span class="pl-k">=</span> <span class="pl-smi">$metricManager</span><span class="pl-k">-&gt;</span>cacheMetrics(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
+
+<h6>
+<a id="num-int---default--1000--number-of-metric-to-return-from-a-single-page-uses-cachet-pagination" class="anchor" href="#num-int---default--1000--number-of-metric-to-return-from-a-single-page-uses-cachet-pagination" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of metric to return from a single page (uses cachet pagination).</h6>
+
+<h6>
+<a id="page-int---default--1--page-number-uses-cachet-pagination-9" class="anchor" href="#page-int---default--1--page-number-uses-cachet-pagination-9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$page (int - default = 1) = Page number (uses cachet pagination).</h6>
+
+<hr>
+
+<h3>
+<a id="metrics-delete" class="anchor" href="#metrics-delete" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Metrics Delete</h3>
+
+<p>The delete method allows you to delete a specific metric from cachet.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$metricManager</span> <span class="pl-k">=</span> <span class="pl-c1">MetricFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$deleteMetric</span> <span class="pl-k">=</span> <span class="pl-smi">$metricManager</span><span class="pl-k">-&gt;</span>deleteMetric(<span class="pl-smi">$id</span>);</span></pre></div>
+
+<h6>
+<a id="id-int--metric-id" class="anchor" href="#id-int--metric-id" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$id (int) = Metric ID.</h6>
+
+<hr>
+
+<h3>
+<a id="metrics-get" class="anchor" href="#metrics-get" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Metrics Get</h3>
+
+<p>The get method allows you to get a specific metric from cachet.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$metricManager</span> <span class="pl-k">=</span> <span class="pl-c1">MetricFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$getMetric</span> <span class="pl-k">=</span> <span class="pl-smi">$metricManager</span><span class="pl-k">-&gt;</span>getMetric(<span class="pl-smi">$id</span>);</span></pre></div>
+
+<h6>
+<a id="id-int--metric-id-1" class="anchor" href="#id-int--metric-id-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$id (int) = Metric ID.</h6>
+
+<hr>
+
+<h3>
+<a id="metrics-index" class="anchor" href="#metrics-index" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Metrics Index</h3>
+
+<p>The index method allows you to get a list of metric from cachet.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$metricManager</span> <span class="pl-k">=</span> <span class="pl-c1">MetricFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$indexMetrics</span> <span class="pl-k">=</span> <span class="pl-smi">$metricManager</span><span class="pl-k">-&gt;</span>indexMetrics(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>, <span class="pl-smi">$cache</span>)</span></pre></div>
+
+<h6>
+<a id="num-int---default--1000--number-of-metric-to-return-from-a-single-page-uses-cachet-pagination-1" class="anchor" href="#num-int---default--1000--number-of-metric-to-return-from-a-single-page-uses-cachet-pagination-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of metric to return from a single page (uses cachet pagination).</h6>
+
+<h6>
+<a id="page-int---default--1--page-number-uses-cachet-pagination-10" class="anchor" href="#page-int---default--1--page-number-uses-cachet-pagination-10" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$page (int - default = 1) = Page number (uses cachet pagination).</h6>
+
+<h6>
+<a id="cache-bool---default--true--use-cache-method-6" class="anchor" href="#cache-bool---default--true--use-cache-method-6" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$cache (bool - default = true) = Use cache method.</h6>
+
+<hr>
+
+<h3>
+<a id="metrics-search" class="anchor" href="#metrics-search" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Metrics Search</h3>
+
+<p>The search method allows you to get one or more metric from cachet searching by key's value.</p>
+
+<p>!!! THIS METHOD DON'T RETURN A STANDARD CACHET RESPONSE !!!
+!!! RETURN A SIMPLE ARRAY WITH ALL THE FOUND COMPONENTS !!!</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$metricManager</span> <span class="pl-k">=</span> <span class="pl-c1">MetricFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$metrics</span> <span class="pl-k">=</span> <span class="pl-smi">$metricManager</span><span class="pl-k">-&gt;</span>searchMetrics(<span class="pl-smi">$search</span>, <span class="pl-smi">$by</span>, <span class="pl-smi">$cache</span>, <span class="pl-smi">$limit</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
+
+<h6>
+<a id="search-mixed--value-to-find-3" class="anchor" href="#search-mixed--value-to-find-3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$search (mixed) = Value to find.</h6>
+
+<h6>
+<a id="by-string--column-where-search-the-value-3" class="anchor" href="#by-string--column-where-search-the-value-3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$by (string) = Column where search the value.</h6>
+
+<h6>
+<a id="cache-bool---default--true--use-cache-method-7" class="anchor" href="#cache-bool---default--true--use-cache-method-7" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$cache (bool - default = true) = Use cache method.</h6>
+
+<h6>
+<a id="limit-int---default--1--number-of-metrics-to-return" class="anchor" href="#limit-int---default--1--number-of-metrics-to-return" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$limit (int - default = 1) = Number of metrics to return.</h6>
+
+<h6>
+<a id="num-int---default--1000--number-of-metric-to-return-from-a-single-page-uses-cachet-pagination-2" class="anchor" href="#num-int---default--1000--number-of-metric-to-return-from-a-single-page-uses-cachet-pagination-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of metric to return from a single page (uses cachet pagination).</h6>
+
+<h6>
+<a id="page-int---default--1--page-number-uses-cachet-pagination-11" class="anchor" href="#page-int---default--1--page-number-uses-cachet-pagination-11" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$page (int - default = 1) = Page number (uses cachet pagination).</h6>
+
+<hr>
+
+<h3>
+<a id="metrics-store" class="anchor" href="#metrics-store" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Metrics Store</h3>
+
+<p>The store method allows you to add a metric.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$metricManager</span> <span class="pl-k">=</span> <span class="pl-c1">MetricFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$metric</span> <span class="pl-k">=</span> <span class="pl-smi">$metricManager</span><span class="pl-k">-&gt;</span>storeMetric(<span class="pl-smi">$metric</span>)</span></pre></div>
+
+<h6>
+<a id="metric-array--for-required-params-read-the-cachet-doc" class="anchor" href="#metric-array--for-required-params-read-the-cachet-doc" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$metric (array) = For required params read the <a href="https://docs.cachethq.io/docs">Cachet Doc</a>.</h6>
+
+<pre><code>$sampleArray = [
+  'name' =&gt; 'metric name',
+  'suffix' =&gt; 'metric suffix',
+  'description' =&gt; 'metric description',
+  'default_value' =&gt; 100,
+  'display_chart' =&gt; 1,
+  'calc_type' =&gt; 1,
+  'default_view' =&gt; 1,
+  'threshold' =&gt; 1,
+];
+</code></pre>
+
+<hr>
+
+<hr>
+
+<hr>
+
+<h2>
+<a id="subscribers" class="anchor" href="#subscribers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Subscribers</h2>
+
+<h3>
+<a id="init-a-subscriber-element" class="anchor" href="#init-a-subscriber-element" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Init a subscriber element</h3>
+
+<p>For use one or more action for the Subscriber element, you must init an instance of SubscribersActions.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$subscriberManager</span> <span class="pl-k">=</span> <span class="pl-c1">SubscriberFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span></pre></div>
+
+<hr>
+
+<h3>
+<a id="subscribers-cache" class="anchor" href="#subscribers-cache" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Subscribers Cache</h3>
+
+<p>The cache method allows you to call multiple time the API without kill the performance.
+This method is used in <a href="#subscribers-index">indexSubscribers</a> and <a href="#subscribers-search">searchSubscriber</a>, and use the cachet pagination.</p>
+
+<p>Anyway you can instance it manually.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$subscriberManager</span> <span class="pl-k">=</span> <span class="pl-c1">SubscriberFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$cachedSubscribers</span> <span class="pl-k">=</span> <span class="pl-smi">$subscriberManager</span><span class="pl-k">-&gt;</span>cacheSubscribers(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
+
+<h6>
+<a id="num-int---default--1000--number-of-subscriber-to-return-from-a-single-page-uses-cachet-pagination" class="anchor" href="#num-int---default--1000--number-of-subscriber-to-return-from-a-single-page-uses-cachet-pagination" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of subscriber to return from a single page (uses cachet pagination).</h6>
+
+<h6>
+<a id="page-int---default--1--page-number-uses-cachet-pagination-12" class="anchor" href="#page-int---default--1--page-number-uses-cachet-pagination-12" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$page (int - default = 1) = Page number (uses cachet pagination).</h6>
+
+<hr>
+
+<h3>
+<a id="subscribers-delete" class="anchor" href="#subscribers-delete" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Subscribers Delete</h3>
+
+<p>The delete method allows you to delete a specific subscriber from cachet.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$subscriberManager</span> <span class="pl-k">=</span> <span class="pl-c1">SubscriberFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$deleteSubscriber</span> <span class="pl-k">=</span> <span class="pl-smi">$subscriberManager</span><span class="pl-k">-&gt;</span>deleteSubscriber(<span class="pl-smi">$id</span>);</span></pre></div>
+
+<h6>
+<a id="id-int--subscriber-id" class="anchor" href="#id-int--subscriber-id" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$id (int) = Subscriber ID.</h6>
+
+<hr>
+
+<h3>
+<a id="subscribers-index" class="anchor" href="#subscribers-index" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Subscribers Index</h3>
+
+<p>The index method allows you to get a list of subscriber from cachet.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$subscriberManager</span> <span class="pl-k">=</span> <span class="pl-c1">SubscriberFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$indexSubscribers</span> <span class="pl-k">=</span> <span class="pl-smi">$subscriberManager</span><span class="pl-k">-&gt;</span>indexSubscribers(<span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>, <span class="pl-smi">$cache</span>)</span></pre></div>
+
+<h6>
+<a id="num-int---default--1000--number-of-subscriber-to-return-from-a-single-page-uses-cachet-pagination-1" class="anchor" href="#num-int---default--1000--number-of-subscriber-to-return-from-a-single-page-uses-cachet-pagination-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of subscriber to return from a single page (uses cachet pagination).</h6>
+
+<h6>
+<a id="page-int---default--1--page-number-uses-cachet-pagination-13" class="anchor" href="#page-int---default--1--page-number-uses-cachet-pagination-13" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$page (int - default = 1) = Page number (uses cachet pagination).</h6>
+
+<h6>
+<a id="cache-bool---default--true--use-cache-method-8" class="anchor" href="#cache-bool---default--true--use-cache-method-8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$cache (bool - default = true) = Use cache method.</h6>
+
+<hr>
+
+<h3>
+<a id="subscribers-search" class="anchor" href="#subscribers-search" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Subscribers Search</h3>
+
+<p>The search method allows you to get one or more subscriber from cachet searching by key's value.</p>
+
+<p>!!! THIS METHOD DON'T RETURN A STANDARD CACHET RESPONSE !!!
+!!! RETURN A SIMPLE ARRAY WITH ALL THE FOUND COMPONENTS !!!</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$subscriberManager</span> <span class="pl-k">=</span> <span class="pl-c1">SubscriberFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$subscribers</span> <span class="pl-k">=</span> <span class="pl-smi">$subscriberManager</span><span class="pl-k">-&gt;</span>searchSubscribers(<span class="pl-smi">$search</span>, <span class="pl-smi">$by</span>, <span class="pl-smi">$cache</span>, <span class="pl-smi">$limit</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
+
+<h6>
+<a id="search-mixed--value-to-find-4" class="anchor" href="#search-mixed--value-to-find-4" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$search (mixed) = Value to find.</h6>
+
+<h6>
+<a id="by-string--column-where-search-the-value-4" class="anchor" href="#by-string--column-where-search-the-value-4" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$by (string) = Column where search the value.</h6>
+
+<h6>
+<a id="cache-bool---default--true--use-cache-method-9" class="anchor" href="#cache-bool---default--true--use-cache-method-9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$cache (bool - default = true) = Use cache method.</h6>
+
+<h6>
+<a id="limit-int---default--1--number-of-subscribers-to-return" class="anchor" href="#limit-int---default--1--number-of-subscribers-to-return" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$limit (int - default = 1) = Number of subscribers to return.</h6>
+
+<h6>
+<a id="num-int---default--1000--number-of-subscriber-to-return-from-a-single-page-uses-cachet-pagination-2" class="anchor" href="#num-int---default--1000--number-of-subscriber-to-return-from-a-single-page-uses-cachet-pagination-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of subscriber to return from a single page (uses cachet pagination).</h6>
+
+<h6>
+<a id="page-int---default--1--page-number-uses-cachet-pagination-14" class="anchor" href="#page-int---default--1--page-number-uses-cachet-pagination-14" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$page (int - default = 1) = Page number (uses cachet pagination).</h6>
+
+<hr>
+
+<h3>
+<a id="subscribers-store" class="anchor" href="#subscribers-store" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Subscribers Store</h3>
+
+<p>The store method allows you to add a subscriber.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$subscriberManager</span> <span class="pl-k">=</span> <span class="pl-c1">SubscriberFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$subscriber</span> <span class="pl-k">=</span> <span class="pl-smi">$subscriberManager</span><span class="pl-k">-&gt;</span>storeSubscriber(<span class="pl-smi">$subscriber</span>)</span></pre></div>
+
+<h6>
+<a id="subscriber-array--for-required-params-read-the-cachet-doc" class="anchor" href="#subscriber-array--for-required-params-read-the-cachet-doc" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$subscriber (array) = For required params read the <a href="https://docs.cachethq.io/docs">Cachet Doc</a>.</h6>
+
+<pre><code>$sampleArray = [
+  'name' =&gt; 'subscriber name',
+  'suffix' =&gt; 'subscriber suffix',
+  'description' =&gt; 'subscriber description',
+  'default_value' =&gt; 100,
+  'display_chart' =&gt; 1,
+  'calc_type' =&gt; 1,
+  'default_view' =&gt; 1,
+  'threshold' =&gt; 1,
+];
+</code></pre>
+
+<hr>
+
+<hr>
+
+<hr>
+
+<h2>
+<a id="points" class="anchor" href="#points" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Points</h2>
+
+<h3>
+<a id="init-a-point-element" class="anchor" href="#init-a-point-element" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Init a point element</h3>
+
+<p>For use one or more action for the Point element, you must init an instance of PointsActions.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$pointManager</span> <span class="pl-k">=</span> <span class="pl-c1">PointFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span></pre></div>
+
+<hr>
+
+<h3>
+<a id="points-cache" class="anchor" href="#points-cache" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Points Cache</h3>
+
+<p>The cache method allows you to call multiple time the API without kill the performance.
+This method is used in <a href="#points-index">indexPoints</a> and <a href="#points-search">searchPoint</a>, and use the cachet pagination.</p>
+
+<p>Anyway you can instance it manually.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$pointManager</span> <span class="pl-k">=</span> <span class="pl-c1">PointFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$cachedPoints</span> <span class="pl-k">=</span> <span class="pl-smi">$pointManager</span><span class="pl-k">-&gt;</span>cachePoints(<span class="pl-smi">$metricId</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
+
+<h6>
+<a id="metricid-int--metric-id" class="anchor" href="#metricid-int--metric-id" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$metricId (int) = Metric ID.</h6>
+
+<h6>
+<a id="num-int---default--1000--number-of-point-to-return-from-a-single-page-uses-cachet-pagination" class="anchor" href="#num-int---default--1000--number-of-point-to-return-from-a-single-page-uses-cachet-pagination" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of point to return from a single page (uses cachet pagination).</h6>
+
+<h6>
+<a id="page-int---default--1--page-number-uses-cachet-pagination-15" class="anchor" href="#page-int---default--1--page-number-uses-cachet-pagination-15" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$page (int - default = 1) = Page number (uses cachet pagination).</h6>
+
+<hr>
+
+<h3>
+<a id="points-delete" class="anchor" href="#points-delete" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Points Delete</h3>
+
+<p>The delete method allows you to delete a specific point from cachet.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$pointManager</span> <span class="pl-k">=</span> <span class="pl-c1">PointFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$deletePoint</span> <span class="pl-k">=</span> <span class="pl-smi">$pointManager</span><span class="pl-k">-&gt;</span>deletePoint(<span class="pl-smi">$metricId</span>, <span class="pl-smi">$id</span>);</span></pre></div>
+
+<h6>
+<a id="metricid-int--metric-id-1" class="anchor" href="#metricid-int--metric-id-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$metricId (int) = Metric ID.</h6>
+
+<h6>
+<a id="id-int--point-id" class="anchor" href="#id-int--point-id" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$id (int) = Point ID.</h6>
+
+<hr>
+
+<h3>
+<a id="points-index" class="anchor" href="#points-index" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Points Index</h3>
+
+<p>The index method allows you to get a list of point from cachet.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$pointManager</span> <span class="pl-k">=</span> <span class="pl-c1">PointFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$indexPoints</span> <span class="pl-k">=</span> <span class="pl-smi">$pointManager</span><span class="pl-k">-&gt;</span>indexPoints(<span class="pl-smi">$metricId</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>, <span class="pl-smi">$cache</span>)</span></pre></div>
+
+<h6>
+<a id="metricid-int--metric-id-2" class="anchor" href="#metricid-int--metric-id-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$metricId (int) = Metric ID.</h6>
+
+<h6>
+<a id="num-int---default--1000--number-of-point-to-return-from-a-single-page-uses-cachet-pagination-1" class="anchor" href="#num-int---default--1000--number-of-point-to-return-from-a-single-page-uses-cachet-pagination-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of point to return from a single page (uses cachet pagination).</h6>
+
+<h6>
+<a id="page-int---default--1--page-number-uses-cachet-pagination-16" class="anchor" href="#page-int---default--1--page-number-uses-cachet-pagination-16" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$page (int - default = 1) = Page number (uses cachet pagination).</h6>
+
+<h6>
+<a id="cache-bool---default--true--use-cache-method-10" class="anchor" href="#cache-bool---default--true--use-cache-method-10" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$cache (bool - default = true) = Use cache method.</h6>
+
+<hr>
+
+<h3>
+<a id="points-search" class="anchor" href="#points-search" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Points Search</h3>
+
+<p>The search method allows you to get one or more point from cachet searching by key's value.</p>
+
+<p>!!! THIS METHOD DON'T RETURN A STANDARD CACHET RESPONSE !!!
+!!! RETURN A SIMPLE ARRAY WITH ALL THE FOUND COMPONENTS !!!</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$pointManager</span> <span class="pl-k">=</span> <span class="pl-c1">PointFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$points</span> <span class="pl-k">=</span> <span class="pl-smi">$pointManager</span><span class="pl-k">-&gt;</span>searchPoints(<span class="pl-smi">$metricId</span>, <span class="pl-smi">$search</span>, <span class="pl-smi">$by</span>, <span class="pl-smi">$cache</span>, <span class="pl-smi">$limit</span>, <span class="pl-smi">$num</span>, <span class="pl-smi">$page</span>)</span></pre></div>
+
+<h6>
+<a id="metricid-int--metric-id-3" class="anchor" href="#metricid-int--metric-id-3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$metricId (int) = Metric ID.</h6>
+
+<h6>
+<a id="search-mixed--value-to-find-5" class="anchor" href="#search-mixed--value-to-find-5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$search (mixed) = Value to find.</h6>
+
+<h6>
+<a id="by-string--column-where-search-the-value-5" class="anchor" href="#by-string--column-where-search-the-value-5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$by (string) = Column where search the value.</h6>
+
+<h6>
+<a id="cache-bool---default--true--use-cache-method-11" class="anchor" href="#cache-bool---default--true--use-cache-method-11" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$cache (bool - default = true) = Use cache method.</h6>
+
+<h6>
+<a id="limit-int---default--1--number-of-points-to-return" class="anchor" href="#limit-int---default--1--number-of-points-to-return" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$limit (int - default = 1) = Number of points to return.</h6>
+
+<h6>
+<a id="num-int---default--1000--number-of-point-to-return-from-a-single-page-uses-cachet-pagination-2" class="anchor" href="#num-int---default--1000--number-of-point-to-return-from-a-single-page-uses-cachet-pagination-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$num (int - default = 1000) = Number of point to return from a single page (uses cachet pagination).</h6>
+
+<h6>
+<a id="page-int---default--1--page-number-uses-cachet-pagination-17" class="anchor" href="#page-int---default--1--page-number-uses-cachet-pagination-17" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$page (int - default = 1) = Page number (uses cachet pagination).</h6>
+
+<hr>
+
+<h3>
+<a id="points-store" class="anchor" href="#points-store" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Points Store</h3>
+
+<p>The store method allows you to add a point.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1">    <span class="pl-smi">$pointManager</span> <span class="pl-k">=</span> <span class="pl-c1">PointFactory</span><span class="pl-k">::</span>build(<span class="pl-smi">$cachetClient</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$point</span> <span class="pl-k">=</span> <span class="pl-smi">$pointManager</span><span class="pl-k">-&gt;</span>storePoint(<span class="pl-smi">$metricId</span>, <span class="pl-smi">$point</span>)</span></pre></div>
+
+<h6>
+<a id="metricid-int--metric-id-4" class="anchor" href="#metricid-int--metric-id-4" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$metricId (int) = Metric ID.</h6>
+
+<h6>
+<a id="point-array--for-required-params-read-the-cachet-doc" class="anchor" href="#point-array--for-required-params-read-the-cachet-doc" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>$point (array) = For required params read the <a href="https://docs.cachethq.io/docs">Cachet Doc</a>.</h6>
+
+<pre><code>$sampleArray = [
+  'value' =&gt; 100
+];
+</code></pre>
+
+<hr>
+
+<hr>
+
+<hr>
+
+<h3>
+<a id="exceptions" class="anchor" href="#exceptions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Exceptions</h3>
+
+<p>The exceptions are all based on GuzzleHttp except one, that is used for InvalidResponse</p>
+
+<ul>
+<li>CachetSDKConnectException</li>
+<li>CachetSDKServerException</li>
+<li>CachetSDKClientException</li>
+<li>CachetSDKTooManyRedirectsException</li>
+<li>CachetSDKInvalidResponseException</li>
+</ul>
+
+<p>For more information how to catch, <a href="http://cachetsdk.damianopetrungaro.com/source-class-Damianopetrungaro.CachetSDK.CachetClient.html#53-74">just see the call method in the CachetClient</a></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/damianopetrungaro/CachetSDK">Cachetsdk</a> is maintained by <a href="https://github.com/damianopetrungaro">damianopetrungaro</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
