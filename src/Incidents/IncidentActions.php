@@ -25,6 +25,7 @@ class IncidentActions
 
     /**
      * Contains cached Incidents.
+     *
      * @var null
      */
     protected $cached = null;
@@ -70,8 +71,8 @@ class IncidentActions
     /**
      * Get a defined number of Incidents.
      *
-     * @param int $num
-     * @param int $page
+     * @param int  $num
+     * @param int  $page
      * @param bool $cache
      *
      * @return array|bool
@@ -111,10 +112,10 @@ class IncidentActions
      *
      * @param string $search
      * @param string $by
-     * @param bool $cache
-     * @param int $num
-     * @param int $page
-     * @param int $limit
+     * @param bool   $cache
+     * @param int    $num
+     * @param int    $page
+     * @param int    $limit
      *
      * @return mixed
      */
@@ -125,11 +126,14 @@ class IncidentActions
         $filtered = array_filter(
             $incidents,
             function ($incident) use ($search, $by) {
-                if (strpos($incident[$by], $search) !== false) {
-                    return $incident;
-                }
-                if ($incident[$by] === $search) {
-                    return $incident;
+
+                if (array_key_exists($by, $incident)) {
+                    if (strpos($incident[$by], $search) !== false) {
+                        return $incident;
+                    }
+                    if ($incident[$by] === $search) {
+                        return $incident;
+                    }
                 }
 
                 return false;
@@ -152,48 +156,20 @@ class IncidentActions
      */
     public function storeIncident(array $incident)
     {
-        return $this->client->call(
-            'POST',
-            'incidents',
-            [
-                'json' => [
-                    'name' => $incident['name'],
-                    'message' => $incident['message'],
-                    'status' => $incident['status'],
-                    'visible' => $incident['visible'],
-                    'component_id' => $incident['component_id'] ?: 0,
-                    'component_status' => $incident['component_status'] ?: 0,
-                    'notify' => $incident['notify'] ?: false,
-                ],
-            ]
-        );
+        return $this->client->call('POST', 'incidents', ['json' => $incident]);
     }
 
     /**
      * Update a specific Incident.
      *
-     * @param int $id
+     * @param int   $id
      * @param array $incident
      *
      * @return bool
      */
     public function updateIncident($id, array $incident)
     {
-        return $this->client->call(
-            'PUT',
-            "incidents/$id",
-            [
-                'json' => [
-                    'name' => $incident['name'],
-                    'message' => $incident['message'],
-                    'status' => $incident['status'],
-                    'visible' => $incident['visible'],
-                    'component_id' => $incident['component_id'],
-                    'component_status' => $incident['component_status'],
-                    'notify' => $incident['notify'],
-                ],
-            ]
-        );
+        return $this->client->call('PUT', "incidents/$id", ['json' => $incident]);
     }
 
     /**

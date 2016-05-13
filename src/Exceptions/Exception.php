@@ -1,6 +1,7 @@
 <?php
 /**
  * This file is part of the Damianopetrungaro\CachetSDK\Exceptions package.
+ *
  * @author Damiano Petrungaro <damianopetrungaro@gmail.it>
  */
 
@@ -10,7 +11,7 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use RuntimeException;
 
-class CachetSDKException extends RuntimeException implements CachetSDKExceptionInterface
+class Exception extends RuntimeException implements ExceptionInterface
 {
     private $request;
     private $response;

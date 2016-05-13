@@ -1,6 +1,7 @@
 <?php
 /**
  * This file is part of the Damianopetrungaro\CachetSDK\General package.
+ *
  * @author Damiano Petrungaro <damianopetrungaro@gmail.it>
  */
 

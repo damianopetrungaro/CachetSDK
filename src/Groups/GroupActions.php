@@ -71,8 +71,8 @@ class GroupActions
     /**
      * Get a defined number of Groups.
      *
-     * @param int $num
-     * @param int $page
+     * @param int  $num
+     * @param int  $page
      * @param bool $cache
      *
      * @return array|bool
@@ -112,10 +112,10 @@ class GroupActions
      *
      * @param string $search
      * @param string $by
-     * @param bool $cache
-     * @param int $num
-     * @param int $page
-     * @param int $limit
+     * @param bool   $cache
+     * @param int    $num
+     * @param int    $page
+     * @param int    $limit
      *
      * @return mixed
      */
@@ -126,11 +126,14 @@ class GroupActions
         $filtered = array_filter(
             $groups,
             function ($group) use ($search, $by) {
-                if (strpos($group[$by], $search) !== false) {
-                    return $group;
-                }
-                if ($group[$by] === $search) {
-                    return $group;
+
+                if (array_key_exists($by, $group)) {
+                    if (strpos($group[$by], $search) !== false) {
+                        return $group;
+                    }
+                    if ($group[$by] === $search) {
+                        return $group;
+                    }
                 }
 
                 return false;
@@ -153,40 +156,20 @@ class GroupActions
      */
     public function storeGroup(array $group)
     {
-        return $this->client->call(
-            'POST',
-            'components/groups',
-            [
-                'json' => [
-                    'name' => $group['name'],
-                    'order' => $group['order'] ?: 0,
-                    'collapsed' => $group['collapsed'] ?: 0,
-                ],
-            ]
-        );
+        return $this->client->call('POST', 'components/groups', ['json' => $group]);
     }
 
     /**
      * Update a specific Group.
      *
-     * @param int $id
+     * @param int   $id
      * @param array $group
      *
      * @return bool
      */
     public function updateGroup($id, array $group)
     {
-        return $this->client->call(
-            'PUT',
-            "components/groups/$id",
-            [
-                'json' => [
-                    'name' => $group['name'],
-                    'order' => $group['order'],
-                    'collapsed' => $group['collapsed'],
-                ],
-            ]
-        );
+        return $this->client->call('PUT', "components/groups/$id", ['json' => $group]);
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php
 /**
  * This file is part of the Damianopetrungaro\CachetSDK package.
+ *
  * @author Damiano Petrungaro <damianopetrungaro@gmail.it>
  */
 
@@ -11,9 +12,9 @@ use Damianopetrungaro\CachetSDK\Points\PointFactory;
 class PointsTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Should return a CachetSDKConnectException.
+     * Should return a ConnectException.
      *
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKConnectException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ConnectException
      */
     public function testFactoryReturnError()
     {
@@ -39,13 +40,13 @@ class PointsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Should return a CachetSDKClientException.
+     * Should return a ClientException.
      *
      * @param $metricId
      * @param array $data
      *
      * @dataProvider wrongStorePointArrayProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKClientException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ClientException
      */
     public function testStorePointReturnError($metricId, array $data)
     {
@@ -72,14 +73,14 @@ class PointsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Should return an CachetSDKClientException.
+     * Should return a ClientException.
      *
      * @param $metricId
      * @param mixed $num
      * @param mixed $page
      *
      * @dataProvider wrongNumAndPageProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKClientException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ClientException
      */
     public function testCacheNumOrPageParamsInvalid($metricId, $num, $page)
     {
@@ -106,14 +107,14 @@ class PointsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Should return an CachetSDKClientException.
+     * Should return a ClientException.
      *
      * @param $metricId
      * @param mixed $num
      * @param mixed $page
      *
      * @dataProvider wrongNumAndPageProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKClientException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ClientException
      */
     public function testIndexNumOrPageParamsInvalid($metricId, $num, $page)
     {
@@ -193,13 +194,13 @@ class PointsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Should return a CachetSDKServerException.
+     * Should return a ServerException.
      *
      * @param $metricId
      * @param mixed $id
      *
      * @dataProvider wrongDeletePointIDProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKServerException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ServerException
      */
     public function testDeletePointReturnError($metricId, $id)
     {

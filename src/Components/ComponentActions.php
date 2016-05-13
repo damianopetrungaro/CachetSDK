@@ -25,6 +25,7 @@ class ComponentActions
 
     /**
      * Contains cached Components.
+     *
      * @var null
      */
     protected $cached = null;
@@ -70,8 +71,8 @@ class ComponentActions
     /**
      * Get a defined number of Components.
      *
-     * @param int $num
-     * @param int $page
+     * @param int  $num
+     * @param int  $page
      * @param bool $cache
      *
      * @return array|bool
@@ -111,10 +112,10 @@ class ComponentActions
      *
      * @param string $search
      * @param string $by
-     * @param bool $cache
-     * @param int $num
-     * @param int $page
-     * @param int $limit
+     * @param bool   $cache
+     * @param int    $num
+     * @param int    $page
+     * @param int    $limit
      *
      * @return mixed
      */
@@ -125,11 +126,14 @@ class ComponentActions
         $filtered = array_filter(
             $components,
             function ($component) use ($search, $by) {
-                if (strpos($component[$by], $search) !== false) {
-                    return $component;
-                }
-                if ($component[$by] === $search) {
-                    return $component;
+
+                if (array_key_exists($by, $component)) {
+                    if (strpos($component[$by], $search) !== false) {
+                        return $component;
+                    }
+                    if ($component[$by] === $search) {
+                        return $component;
+                    }
                 }
 
                 return false;
@@ -152,48 +156,20 @@ class ComponentActions
      */
     public function storeComponent(array $component)
     {
-        return $this->client->call(
-            'POST',
-            'components',
-            [
-                'json' => [
-                    'name' => $component['name'],
-                    'description' => $component['description'] ?: null,
-                    'link' => $component['link'] ?: null,
-                    'status' => $component['status'],
-                    'order' => $component['order'] ?: 0,
-                    'group_id' => $component['group_id'] ?: 0,
-                    'enabled' => $component['enabled'] ?: true,
-                ],
-            ]
-        );
+        return $this->client->call('POST', 'components', ['json' => $component]);
     }
 
     /**
      * Update a specific Component.
      *
-     * @param int $id
+     * @param int   $id
      * @param array $component
      *
      * @return bool
      */
     public function updateComponent($id, array $component)
     {
-        return $this->client->call(
-            'PUT',
-            "components/$id",
-            [
-                'json' => [
-                    'name' => $component['name'],
-                    'description' => $component['description'],
-                    'link' => $component['link'],
-                    'status' => $component['status'],
-                    'order' => $component['order'],
-                    'group_id' => $component['group_id'],
-                    'enabled' => $component['enabled'],
-                ],
-            ]
-        );
+        return $this->client->call('PUT', "components/$id", ['json' => $component]);
     }
 
     /**

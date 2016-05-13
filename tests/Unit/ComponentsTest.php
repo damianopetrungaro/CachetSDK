@@ -1,6 +1,7 @@
 <?php
 /**
  * This file is part of the Damianopetrungaro\CachetSDK package.
+ *
  * @author Damiano Petrungaro <damianopetrungaro@gmail.it>
  */
 
@@ -12,9 +13,9 @@ use Damianopetrungaro\CachetSDKTest\ClientFactory;
 class ComponentsTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Should return a CachetSDKConnectException.
+     * Should return a ConnectException.
      *
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKConnectException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ConnectException
      */
     public function testFactoryReturnError()
     {
@@ -39,12 +40,12 @@ class ComponentsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Should return a CachetSDKClientException.
+     * Should return a ClientException.
      *
      * @param array $data
      *
      * @dataProvider wrongStoreComponentArrayProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKClientException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ClientException
      */
     public function testStoreComponentReturnError(array $data)
     {
@@ -70,13 +71,13 @@ class ComponentsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Should return an CachetSDKServerException.
+     * Should return a ServerException.
      *
      * @param mixed $num
      * @param mixed $page
      *
      * @dataProvider wrongNumAndPageProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKServerException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ServerException
      */
     public function testCacheNumOrPageParamsInvalid($num, $page)
     {
@@ -102,13 +103,13 @@ class ComponentsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Should return an CachetSDKServerException.
+     * Should return a ServerException.
      *
      * @param mixed $num
      * @param mixed $page
      *
      * @dataProvider wrongNumAndPageProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKServerException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ServerException
      */
     public function testIndexNumOrPageParamsInvalid($num, $page)
     {
@@ -138,7 +139,7 @@ class ComponentsTest extends \PHPUnit_Framework_TestCase
      * @param mixed $id
      *
      * @dataProvider inexistentIDProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKClientException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ClientException
      */
     public function testGetReturnEmpty($id)
     {
@@ -148,12 +149,12 @@ class ComponentsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Should return an CachetSDKServerException.
+     * Should return a ServerException.
      *
      * @param mixed $id
      *
      * @dataProvider wrongIDProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKServerException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ServerException
      */
     public function testGetIDParamInvalid($id)
     {
@@ -230,13 +231,13 @@ class ComponentsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Should return a CachetSDKServerException.
+     * Should return a ServerException.
      *
      * @param mixed $id
      * @param array $data
      *
      * @dataProvider wrongUpdateComponentIDAndArrayProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKServerException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ServerException
      */
     public function testUpdateComponentReturnError($id, array $data)
     {
@@ -262,12 +263,12 @@ class ComponentsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Should return a CachetSDKServerException.
+     * Should return a ServerException.
      *
      * @param mixed $id
      *
      * @dataProvider wrongDeleteComponentIDProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKServerException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ServerException
      */
     public function testDeleteComponentReturnError($id)
     {

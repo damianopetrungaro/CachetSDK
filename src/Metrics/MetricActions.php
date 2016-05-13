@@ -25,6 +25,7 @@ class MetricActions
 
     /**
      * Contains cached Metrics.
+     *
      * @var null
      */
     protected $cached = null;
@@ -70,8 +71,8 @@ class MetricActions
     /**
      * Get a defined number of Metrics.
      *
-     * @param int $num
-     * @param int $page
+     * @param int  $num
+     * @param int  $page
      * @param bool $cache
      *
      * @return array|bool
@@ -111,10 +112,10 @@ class MetricActions
      *
      * @param string $search
      * @param string $by
-     * @param bool $cache
-     * @param int $num
-     * @param int $page
-     * @param int $limit
+     * @param bool   $cache
+     * @param int    $num
+     * @param int    $page
+     * @param int    $limit
      *
      * @return mixed
      */
@@ -125,11 +126,14 @@ class MetricActions
         $filtered = array_filter(
             $metrics,
             function ($metric) use ($search, $by) {
-                if (strpos($metric[$by], $search) !== false) {
-                    return $metric;
-                }
-                if ($metric[$by] === $search) {
-                    return $metric;
+
+                if (array_key_exists($by, $metric)) {
+                    if (strpos($metric[$by], $search) !== false) {
+                        return $metric;
+                    }
+                    if ($metric[$by] === $search) {
+                        return $metric;
+                    }
                 }
 
                 return false;
@@ -152,50 +156,20 @@ class MetricActions
      */
     public function storeMetric(array $metric)
     {
-        return $this->client->call(
-            'POST',
-            'metrics',
-            [
-                'json' => [
-                    'name' => $metric['name'],
-                    'suffix' => $metric['suffix'],
-                    'description' => $metric['description'],
-                    'default_value' => $metric['default_value'] ?: 0,
-                    'display_chart' => $metric['display_chart'] ?: true,
-                    'calc_type' => $metric['calc_type'] ?: 1,
-                    'default_view' => $metric['default_view'] ?: 0,
-                    'threshold' => $metric['threshold'] ?: 1,
-                ],
-            ]
-        );
+        return $this->client->call('POST', 'metrics', ['json' => $metric]);
     }
 
     /**
      * Update a specific Metric.
      *
-     * @param int $id
+     * @param int   $id
      * @param array $metric
      *
      * @return bool
      */
     public function updateMetric($id, array $metric)
     {
-        return $this->client->call(
-            'PUT',
-            "metrics/$id",
-            [
-                'json' => [
-                    'name' => $metric['name'],
-                    'suffix' => $metric['suffix'],
-                    'description' => $metric['description'],
-                    'default_value' => $metric['default_value'],
-                    'display_chart' => $metric['display_chart'],
-                    'calc_type' => $metric['calc_type'],
-                    'default_view' => $metric['default_view'],
-                    'threshold' => $metric['threshold'],
-                ],
-            ]
-        );
+        return $this->client->call('PUT', "metrics/$id", ['json' => $metric]);
     }
 
     /**

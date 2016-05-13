@@ -1,6 +1,7 @@
 <?php
 /**
  * This file is part of the Damianopetrungaro\CachetSDK\Exceptions package.
+ *
  * @author Damiano Petrungaro <damianopetrungaro@gmail.it>
  */
 
@@ -9,7 +10,7 @@ namespace Damianopetrungaro\CachetSDK\Exceptions;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-class CachetSDKInvalidResponseException extends CachetSDKException
+class InvalidResponseException extends Exception
 {
     public function __construct(RequestInterface $request, ResponseInterface $response, \Exception $previous = null)
     {

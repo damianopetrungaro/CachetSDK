@@ -25,6 +25,7 @@ class SubscriberActions
 
     /**
      * Contains cached Subscribers.
+     *
      * @var null
      */
     protected $cached = null;
@@ -70,8 +71,8 @@ class SubscriberActions
     /**
      * Get a defined number of Subscribers.
      *
-     * @param int $num
-     * @param int $page
+     * @param int  $num
+     * @param int  $page
      * @param bool $cache
      *
      * @return array|bool
@@ -99,10 +100,10 @@ class SubscriberActions
      *
      * @param string $search
      * @param string $by
-     * @param bool $cache
-     * @param int $num
-     * @param int $page
-     * @param int $limit
+     * @param bool   $cache
+     * @param int    $num
+     * @param int    $page
+     * @param int    $limit
      *
      * @return mixed
      */
@@ -113,11 +114,14 @@ class SubscriberActions
         $filtered = array_filter(
             $subscribers,
             function ($subscriber) use ($search, $by) {
-                if (strpos($subscriber[$by], $search) !== false) {
-                    return $subscriber;
-                }
-                if ($subscriber[$by] === $search) {
-                    return $subscriber;
+
+                if (array_key_exists($by, $subscriber)) {
+                    if (strpos($subscriber[$by], $search) !== false) {
+                        return $subscriber;
+                    }
+                    if ($subscriber[$by] === $search) {
+                        return $subscriber;
+                    }
                 }
 
                 return false;
@@ -140,16 +144,7 @@ class SubscriberActions
      */
     public function storeSubscriber(array $subscriber)
     {
-        return $this->client->call(
-            'POST',
-            'subscribers',
-            [
-                'json' => [
-                    'email' => $subscriber['email'],
-                    'verify' => $subscriber['verify'] ?: 0,
-                ],
-            ]
-        );
+        return $this->client->call('POST', 'subscribers', ['json' => $subscriber]);
     }
 
     /**

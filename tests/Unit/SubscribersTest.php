@@ -1,6 +1,7 @@
 <?php
 /**
  * This file is part of the Damianopetrungaro\CachetSDK package.
+ *
  * @author Damiano Petrungaro <damianopetrungaro@gmail.it>
  */
 
@@ -11,9 +12,9 @@ use Damianopetrungaro\CachetSDK\Subscribers\SubscriberFactory;
 class SubscribersTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Should return a CachetSDKConnectException.
+     * Should return a  ConnectException.
      *
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKConnectException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ConnectException
      */
     public function testFactoryReturnError()
     {
@@ -34,16 +35,16 @@ class SubscribersTest extends \PHPUnit_Framework_TestCase
         $goodClient = ClientFactory::goodClient();
         $subscriberFactory = SubscriberFactory::build($goodClient);
         $subscriber = $subscriberFactory->storeSubscriber($data);
-        $this->assertEquals($subscriber['data']['name'], $data['name']);
+        $this->assertEquals($subscriber['data']['email'], $data['email']);
     }
 
     /**
-     * Should return a CachetSDKClientException.
+     * Should return a  ClientException.
      *
      * @param array $data
      *
      * @dataProvider wrongStoreSubscriberArrayProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKClientException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ClientException
      */
     public function testStoreSubscriberReturnError(array $data)
     {
@@ -69,13 +70,13 @@ class SubscribersTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Should return an CachetSDKServerException.
+     * Should return a ServerException.
      *
      * @param mixed $num
      * @param mixed $page
      *
      * @dataProvider wrongNumAndPageProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKServerException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ServerException
      */
     public function testCacheNumOrPageParamsInvalid($num, $page)
     {
@@ -101,13 +102,13 @@ class SubscribersTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Should return an CachetSDKServerException.
+     * Should return a ServerException.
      *
      * @param mixed $num
      * @param mixed $page
      *
      * @dataProvider wrongNumAndPageProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKServerException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ServerException
      */
     public function testIndexNumOrPageParamsInvalid($num, $page)
     {
@@ -183,12 +184,12 @@ class SubscribersTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Should return a CachetSDKServerException.
+     * Should return a  ServerException.
      *
      * @param mixed $id
      *
      * @dataProvider wrongDeleteSubscriberIDProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKServerException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ServerException
      */
     public function testDeleteSubscriberReturnError($id)
     {

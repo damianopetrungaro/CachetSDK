@@ -1,6 +1,7 @@
 <?php
 /**
  * This file is part of the Damianopetrungaro\CachetSDK package.
+ *
  * @author Damiano Petrungaro <damianopetrungaro@gmail.it>
  */
 
@@ -9,7 +10,7 @@ namespace Damianopetrungaro\CachetSDKTest\Unit;
 use Damianopetrungaro\CachetSDK\General\GeneralFactory;
 use Damianopetrungaro\CachetSDKTest\ClientFactory;
 
-class GoodClientTest extends \PHPUnit_Framework_TestCase
+class ClientTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Should return an array with data key as "Pong!".
@@ -22,9 +23,9 @@ class GoodClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Should return a CachetSDKConnectException.
+     * Should return a ConnectException.
      *
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKConnectException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ConnectException
      */
     public function testBadClient()
     {

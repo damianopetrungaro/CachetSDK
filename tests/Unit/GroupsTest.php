@@ -1,6 +1,7 @@
 <?php
 /**
  * This file is part of the Damianopetrungaro\CachetSDK package.
+ *
  * @author Damiano Petrungaro <damianopetrungaro@gmail.it>
  */
 
@@ -11,9 +12,9 @@ use Damianopetrungaro\CachetSDK\Groups\GroupFactory;
 class GroupsTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Should return a CachetSDKConnectException.
+     * Should return a ConnectException.
      *
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKConnectException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ConnectException
      */
     public function testFactoryReturnError()
     {
@@ -38,12 +39,12 @@ class GroupsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Should return a CachetSDKClientException.
+     * Should return a ClientException.
      *
      * @param array $data
      *
      * @dataProvider wrongStoreGroupArrayProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKClientException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ClientException
      */
     public function testStoreGroupReturnError(array $data)
     {
@@ -69,13 +70,13 @@ class GroupsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Should return an CachetSDKServerException.
+     * Should return a ServerException.
      *
      * @param mixed $num
      * @param mixed $page
      *
      * @dataProvider wrongNumAndPageProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKServerException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ServerException
      */
     public function testCacheNumOrPageParamsInvalid($num, $page)
     {
@@ -101,13 +102,13 @@ class GroupsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Should return an CachetSDKServerException.
+     * Should return a ServerException.
      *
      * @param mixed $num
      * @param mixed $page
      *
      * @dataProvider wrongNumAndPageProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKServerException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ServerException
      */
     public function testIndexNumOrPageParamsInvalid($num, $page)
     {
@@ -137,7 +138,7 @@ class GroupsTest extends \PHPUnit_Framework_TestCase
      * @param mixed $id
      *
      * @dataProvider inexistentIDProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKClientException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ClientException
      */
     public function testGetReturnEmpty($id)
     {
@@ -147,12 +148,12 @@ class GroupsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Should return an CachetSDKServerException.
+     * Should return a ServerException.
      *
      * @param mixed $id
      *
      * @dataProvider wrongIDProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKServerException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ServerException
      */
     public function testGetIDParamInvalid($id)
     {
@@ -229,13 +230,13 @@ class GroupsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Should return a CachetSDKServerException.
+     * Should return a ServerException.
      *
      * @param mixed $id
      * @param array $data
      *
      * @dataProvider wrongUpdateGroupIDAndArrayProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKServerException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ServerException
      */
     public function testUpdateGroupReturnError($id, array $data)
     {
@@ -261,12 +262,12 @@ class GroupsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Should return a CachetSDKServerException.
+     * Should return a ServerException.
      *
      * @param mixed $id
      *
      * @dataProvider wrongDeleteGroupIDProvider
-     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\CachetSDKServerException
+     * @expectedException \Damianopetrungaro\CachetSDK\Exceptions\ServerException
      */
     public function testDeleteGroupReturnError($id)
     {

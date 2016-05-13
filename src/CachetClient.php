@@ -7,11 +7,11 @@
 
 namespace Damianopetrungaro\CachetSDK;
 
-use Damianopetrungaro\CachetSDK\Exceptions\CachetSDKTooManyRedirectsException;
-use Damianopetrungaro\CachetSDK\Exceptions\CachetSDKInvalidResponseException;
-use Damianopetrungaro\CachetSDK\Exceptions\CachetSDKConnectException;
-use Damianopetrungaro\CachetSDK\Exceptions\CachetSDKClientException;
-use Damianopetrungaro\CachetSDK\Exceptions\CachetSDKServerException;
+use Damianopetrungaro\CachetSDK\Exceptions\TooManyRedirectsException as CachetTooManyRedirectsException;
+use Damianopetrungaro\CachetSDK\Exceptions\InvalidResponseException as CachetInvalidResponseException;
+use Damianopetrungaro\CachetSDK\Exceptions\ConnectException as CachetConnectException;
+use Damianopetrungaro\CachetSDK\Exceptions\ClientException as CachetClientException;
+use Damianopetrungaro\CachetSDK\Exceptions\ServerException as CachetServerException;
 use GuzzleHttp\Exception\TooManyRedirectsException;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\ClientException;
@@ -56,17 +56,17 @@ class CachetClient
             $response = $this->client->send($request, $params);
             $body = json_decode($response->getBody(), true);
         } catch (ConnectException $e) {
-            throw new CachetSDKConnectException($e->getRequest(), $e->getMessage(), $e->getPrevious());
+            throw new CachetConnectException($e->getRequest(), $e->getMessage(), $e->getPrevious());
         } catch (ServerException $e) {
-            throw new CachetSDKServerException($e->getRequest(), $e->getMessage(), $e->getPrevious(), $e->getResponse());
+            throw new CachetServerException($e->getRequest(), $e->getMessage(), $e->getPrevious(), $e->getResponse());
         } catch (ClientException $e) {
-            throw new CachetSDKClientException($e->getRequest(), $e->getMessage(), $e->getPrevious(), $e->getResponse());
+            throw new CachetClientException($e->getRequest(), $e->getMessage(), $e->getPrevious(), $e->getResponse());
         } catch (TooManyRedirectsException $e) {
-            throw new CachetSDKTooManyRedirectsException($e->getRequest(), $e->getMessage(), $e->getPrevious(), $e->getResponse());
+            throw new CachetTooManyRedirectsException($e->getRequest(), $e->getMessage(), $e->getPrevious(), $e->getResponse());
         }
 
-        if ((is_array($body) && ! array_key_exists('data', $body)) && ! empty($body)) {
-            throw new CachetSDKInvalidResponseException($request, $response);
+        if ((is_array($body) && !array_key_exists('data', $body)) && !empty($body)) {
+            throw new CachetInvalidResponseException($request, $response);
         }
 
         return $body;
