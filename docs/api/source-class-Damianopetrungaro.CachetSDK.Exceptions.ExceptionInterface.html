@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="robots" content="noindex">
 
-	<title>File Exceptions/CachetSDKConnectException.php</title>
+	<title>File Exceptions/ExceptionInterface.php</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
@@ -117,18 +117,18 @@
 
 			<h3>Interfaces</h3>
 			<ul>
-				<li><a href="class-Damianopetrungaro.CachetSDK.Exceptions.CachetSDKExceptionInterface.html">Damianopetrungaro\CachetSDK\Exceptions\CachetSDKExceptionInterface</a></li>
+				<li><a href="class-Damianopetrungaro.CachetSDK.Exceptions.ExceptionInterface.html">Damianopetrungaro\CachetSDK\Exceptions\ExceptionInterface</a></li>
 			</ul>
 
 
 			<h3>Exceptions</h3>
 			<ul>
-				<li><a href="class-Damianopetrungaro.CachetSDK.Exceptions.CachetSDKClientException.html">Damianopetrungaro\CachetSDK\Exceptions\CachetSDKClientException</a></li>
-				<li><a href="class-Damianopetrungaro.CachetSDK.Exceptions.CachetSDKConnectException.html">Damianopetrungaro\CachetSDK\Exceptions\CachetSDKConnectException</a></li>
-				<li><a href="class-Damianopetrungaro.CachetSDK.Exceptions.CachetSDKException.html">Damianopetrungaro\CachetSDK\Exceptions\CachetSDKException</a></li>
-				<li><a href="class-Damianopetrungaro.CachetSDK.Exceptions.CachetSDKInvalidResponseException.html">Damianopetrungaro\CachetSDK\Exceptions\CachetSDKInvalidResponseException</a></li>
-				<li><a href="class-Damianopetrungaro.CachetSDK.Exceptions.CachetSDKServerException.html">Damianopetrungaro\CachetSDK\Exceptions\CachetSDKServerException</a></li>
-				<li><a href="class-Damianopetrungaro.CachetSDK.Exceptions.CachetSDKTooManyRedirectsException.html">Damianopetrungaro\CachetSDK\Exceptions\CachetSDKTooManyRedirectsException</a></li>
+				<li><a href="class-Damianopetrungaro.CachetSDK.Exceptions.ClientException.html">Damianopetrungaro\CachetSDK\Exceptions\ClientException</a></li>
+				<li><a href="class-Damianopetrungaro.CachetSDK.Exceptions.ConnectException.html">Damianopetrungaro\CachetSDK\Exceptions\ConnectException</a></li>
+				<li><a href="class-Damianopetrungaro.CachetSDK.Exceptions.Exception.html">Damianopetrungaro\CachetSDK\Exceptions\Exception</a></li>
+				<li><a href="class-Damianopetrungaro.CachetSDK.Exceptions.InvalidResponseException.html">Damianopetrungaro\CachetSDK\Exceptions\InvalidResponseException</a></li>
+				<li><a href="class-Damianopetrungaro.CachetSDK.Exceptions.ServerException.html">Damianopetrungaro\CachetSDK\Exceptions\ServerException</a></li>
+				<li><a href="class-Damianopetrungaro.CachetSDK.Exceptions.TooManyRedirectsException.html">Damianopetrungaro\CachetSDK\Exceptions\TooManyRedirectsException</a></li>
 			</ul>
 
 
@@ -143,20 +143,16 @@
 <pre id="source"><code><span id="1" class="l"><a href="#1"> 1 </a><span class="xlang">&lt;?php</span>
 </span><span id="2" class="l"><a href="#2"> 2 </a><span class="php-comment">/**
 </span></span><span id="3" class="l"><a href="#3"> 3 </a><span class="php-comment"> * This file is part of the Damianopetrungaro\CachetSDK\Exceptions package.
-</span></span><span id="4" class="l"><a href="#4"> 4 </a><span class="php-comment"> * @author Damiano Petrungaro &lt;damianopetrungaro@gmail.it&gt;
-</span></span><span id="5" class="l"><a href="#5"> 5 </a><span class="php-comment"> */</span>
-</span><span id="6" class="l"><a href="#6"> 6 </a>
-</span><span id="7" class="l"><a href="#7"> 7 </a><span class="php-keyword1">namespace</span> Damianopetrungaro\CachetSDK\Exceptions;
-</span><span id="8" class="l"><a href="#8"> 8 </a>
-</span><span id="9" class="l"><a href="#9"> 9 </a><span class="php-keyword1">use</span> Psr\Http\Message\RequestInterface;
-</span><span id="10" class="l"><a href="#10">10 </a>
-</span><span id="11" class="l"><a href="#11">11 </a><span class="php-keyword1">class</span> CachetSDKConnectException <span class="php-keyword1">extends</span> CachetSDKException
-</span><span id="12" class="l"><a href="#12">12 </a>{
-</span><span id="13" class="l"><a href="#13">13 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> __construct(RequestInterface <span class="php-var">$request</span>, <span class="php-var">$message</span>, \Exception <span class="php-var">$previous</span> = <span class="php-keyword1">null</span>)
-</span><span id="14" class="l"><a href="#14">14 </a>    {
-</span><span id="15" class="l"><a href="#15">15 </a>        parent::__construct(<span class="php-var">$request</span>, <span class="php-var">$message</span>, <span class="php-var">$previous</span>);
-</span><span id="16" class="l"><a href="#16">16 </a>    }
-</span><span id="17" class="l"><a href="#17">17 </a>}</span></code></pre>
+</span></span><span id="4" class="l"><a href="#4"> 4 </a><span class="php-comment"> *
+</span></span><span id="5" class="l"><a href="#5"> 5 </a><span class="php-comment"> * @author Damiano Petrungaro &lt;damianopetrungaro@gmail.it&gt;
+</span></span><span id="6" class="l"><a href="#6"> 6 </a><span class="php-comment"> */</span>
+</span><span id="7" class="l"><a href="#7"> 7 </a>
+</span><span id="8" class="l"><a href="#8"> 8 </a><span class="php-keyword1">namespace</span> Damianopetrungaro\CachetSDK\Exceptions;
+</span><span id="9" class="l"><a href="#9"> 9 </a>
+</span><span id="10" class="l"><a href="#10">10 </a><span class="php-keyword1">interface</span> ExceptionInterface
+</span><span id="11" class="l"><a href="#11">11 </a>{
+</span><span id="12" class="l"><a href="#12">12 </a>}
+</span><span id="13" class="l"><a href="#13">13 </a></span></code></pre>
 	</div>
 
 	<div id="footer">
@@ -164,6 +160,6 @@
 	</div>
 </div>
 <script src="resources/combined.js?533e23ef2f02bd4b20548834a028566b6eb403e0"></script>
-<script src="elementlist.js?7fc0d19c6a6cfa7bf4c5fbdb71715923864b6649"></script>
+<script src="elementlist.js?0f9abcb095de4289b8fcbbd9fe4d39579e6be5cf"></script>
 </body>
 </html>
