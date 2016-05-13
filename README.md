@@ -140,7 +140,7 @@ This method is used in [indexComponents](#components-index) and [searchComponent
 Anyway you can instance it manually, but for use it in [indexComponents](#components-index) and [searchComponent](#components-search) you must set the cache to true.
 
 ```php
-    $componentManager->setCache(true); If you want to use cache
+    $componentManager->setCache(true); // If you want to use cache
 ```
 
 ```php
@@ -192,7 +192,7 @@ The index method allows you to get a list of component from cachet.
 
 ```php
     $componentManager = ComponentFactory::build($cachetClient);
-    // $componentManager->setCache(true); If you want to use cache
+    // $componentManager->setCache(true); // If you want to use cache
     $indexComponents = $componentManager->indexComponents($num, $page)
 ```
 
@@ -215,7 +215,7 @@ The search method allows you to get one or more component from cachet searching 
 
 ```php
     $componentManager = ComponentFactory::build($cachetClient);
-    // $componentManager->setCache(true); If you want to use cache
+    // $componentManager->setCache(true); // If you want to use cache
     $components = $componentManager->searchComponents($search, $by, $limit, $num, $page)
 ```
 
@@ -306,7 +306,7 @@ This method is used in [indexGroups](#groups-index) and [searchGroup](#groups-se
 Anyway you can instance it manually, but for use it in [indexCaches](#caches-index) and [searchCache](#caches-search) you must set the cache to true.
 
 ```php
-    $cacheManager->setCache(true); If you want to use cache
+    $cacheManager->setCache(true); // If you want to use cache
 ```
 
 ```php
@@ -358,7 +358,7 @@ The index method allows you to get a list of group from cachet.
 
 ```php
     $groupManager = GroupFactory::build($cachetClient);
-    // $groupManager->setCache(true); If you want to use cache
+    // $groupManager->setCache(true); // If you want to use cache
     $indexGroups = $groupManager->indexGroups($num, $page)
 ```
 
@@ -381,7 +381,7 @@ The search method allows you to get one or more group from cachet searching by k
 
 ```php
     $groupManager = GroupFactory::build($cachetClient);
-    // $groupManager->setCache(true); If you want to use cache
+    // $groupManager->setCache(true); // If you want to use cache
     $groups = $groupManager->searchGroups($search, $by, $limit, $num, $page)
 ```
 
@@ -465,7 +465,7 @@ This method is used in [indexIncidents](#incidents-index) and [searchIncident](#
 Anyway you can instance it manually, but for use it in [indexIncidents](#incidents-index) and [searchIncident](#incidents-search) you must set the cache to true.
 
 ```php
-    $incidentManager->setCache(true); If you want to use cache
+    $incidentManager->setCache(true); // If you want to use cache
 ```
 
 ```php
@@ -517,7 +517,7 @@ The index method allows you to get a list of incident from cachet.
 
 ```php
     $incidentManager = IncidentFactory::build($cachetClient);
-    // $incidentManager->setCache(true); If you want to use cache
+    // $incidentManager->setCache(true); // If you want to use cache
     $indexIncidents = $incidentManager->indexIncidents($num, $page)
 ```
 
@@ -540,7 +540,7 @@ The search method allows you to get one or more incident from cachet searching b
 
 ```php
     $incidentManager = IncidentFactory::build($cachetClient);
-    // $incidentManager->setCache(true); If you want to use cache
+    // $incidentManager->setCache(true); // If you want to use cache
     $incidents = $incidentManager->searchIncidents($search, $by, $limit, $num, $page)
 ```
 
@@ -631,7 +631,7 @@ This method is used in [indexMetrics](#metrics-index) and [searchMetric](#metric
 Anyway you can instance it manually, but for use it in [indexMetrics](#metrics-index) and [searchMetric](#metrics-search) you must set the cache to true.
 
 ```php
-    $metricManager->setCache(true); If you want to use cache
+    $metricManager->setCache(true); // If you want to use cache
 ```
 
 ```php
@@ -683,7 +683,7 @@ The index method allows you to get a list of metric from cachet.
 
 ```php
     $metricManager = MetricFactory::build($cachetClient);
-    // $metricManager->setCache(true); If you want to use cache
+    // $metricManager->setCache(true); // If you want to use cache
     $indexMetrics = $metricManager->indexMetrics($num, $page)
 ```
 
@@ -706,7 +706,7 @@ The search method allows you to get one or more metric from cachet searching by 
 
 ```php
     $metricManager = MetricFactory::build($cachetClient);
-    // $metricManager->setCache(true); If you want to use cache
+    // $metricManager->setCache(true); // If you want to use cache
     $metrics = $metricManager->searchMetrics($search, $by, $limit, $num, $page)
 ```
 
@@ -773,7 +773,7 @@ This method is used in [indexSubscribers](#subscribers-index) and [searchSubscri
 Anyway you can instance it manually, but for use it in [indexSubscribers](#subscribers-index) and [searchSubscriber](#subscribers-search) you must set the cache to true.
 
 ```php
-    $subscriberManager->setCache(true); If you want to use cache
+    $subscriberManager->setCache(true); // If you want to use cache
 ```
 
 ```php
@@ -810,7 +810,7 @@ The index method allows you to get a list of subscriber from cachet.
 
 ```php
     $subscriberManager = SubscriberFactory::build($cachetClient);
-    // $subscriberManager->setCache(true); If you want to use cache
+    // $subscriberManager->setCache(true); // If you want to use cache
     $indexSubscribers = $subscriberManager->indexSubscribers($num, $page)
 ```
 
@@ -833,7 +833,7 @@ The search method allows you to get one or more subscriber from cachet searching
 
 ```php
     $subscriberManager = SubscriberFactory::build($cachetClient);
-    // $subscriberManager->setCache(true); If you want to use cache
+    // $subscriberManager->setCache(true); // If you want to use cache
     $subscribers = $subscriberManager->searchSubscribers($search, $by, $limit, $num, $page)
 ```
 
@@ -898,7 +898,7 @@ This method is used in [indexPoints](#points-index) and [searchPoint](#points-se
 Anyway you can instance it manually, but for use it in [indexPoints](#points-index) and [searchPoint](#points-search) you must set the cache to true.
 
 ```php
-    $pointManager->setCache(true); If you want to use cache
+    $pointManager->setCache(true); // If you want to use cache
 ```
 
 ```php
@@ -939,7 +939,7 @@ The index method allows you to get a list of point from cachet.
 
 ```php
     $pointManager = PointFactory::build($cachetClient);
-    // $subscriberManager->setCache(true); If you want to use cache
+    // $subscriberManager->setCache(true); // If you want to use cache
     $indexPoints = $pointManager->indexPoints($metricId, $num, $page, $cache)
 ```
 
@@ -964,7 +964,7 @@ The search method allows you to get one or more point from cachet searching by k
 
 ```php
     $pointManager = PointFactory::build($cachetClient);
-    // $pointManager->setCache(true); If you want to use cache
+    // $pointManager->setCache(true); // If you want to use cache
     $points = $pointManager->searchPoints($metricId, $search, $by, $limit, $num, $page)
 ```
 
