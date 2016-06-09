@@ -7,9 +7,9 @@
 
 namespace Damianopetrungaro\CachetSDK\Exceptions;
 
+use RuntimeException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use RuntimeException;
 
 class Exception extends RuntimeException implements ExceptionInterface
 {

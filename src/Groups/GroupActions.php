@@ -48,7 +48,7 @@ class GroupActions
     }
 
     /**
-     * Set the cache to true or false
+     * Set the cache to true or false.
      *
      * @param bool $status
      */

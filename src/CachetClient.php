@@ -7,17 +7,17 @@
 
 namespace Damianopetrungaro\CachetSDK;
 
-use Damianopetrungaro\CachetSDK\Exceptions\TooManyRedirectsException as CachetTooManyRedirectsException;
-use Damianopetrungaro\CachetSDK\Exceptions\InvalidResponseException as CachetInvalidResponseException;
-use Damianopetrungaro\CachetSDK\Exceptions\ConnectException as CachetConnectException;
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Exception\ServerException;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\TooManyRedirectsException;
 use Damianopetrungaro\CachetSDK\Exceptions\ClientException as CachetClientException;
 use Damianopetrungaro\CachetSDK\Exceptions\ServerException as CachetServerException;
-use GuzzleHttp\Exception\TooManyRedirectsException;
-use GuzzleHttp\Exception\ConnectException;
-use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exception\ServerException;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Client;
+use Damianopetrungaro\CachetSDK\Exceptions\ConnectException as CachetConnectException;
+use Damianopetrungaro\CachetSDK\Exceptions\InvalidResponseException as CachetInvalidResponseException;
+use Damianopetrungaro\CachetSDK\Exceptions\TooManyRedirectsException as CachetTooManyRedirectsException;
 
 /**
  * Class CachetClient.
@@ -33,20 +33,23 @@ class CachetClient
     /**
      * Cachet Client Singleton.
      *
-     * @param $endpoint
-     * @param $token
+     * @param string $endpoint
+     * @param string $token
+     * @param array $clientConfig
      */
-    public function __construct($endpoint, $token)
+    public function __construct($endpoint, $token, array $clientConfig = [])
     {
-        $this->client = new Client(
-            [
-                'base_uri' => $endpoint,
-                'headers' => [
-                    'Content-type' => 'application/json',
-                    'X-Cachet-Token' => $token,
-                ],
-            ]
-        );
+        $basicConfig = [
+            'base_uri' => $endpoint,
+            'headers' => [
+                'Content-type' => 'application/json',
+                'X-Cachet-Token' => $token,
+            ],
+        ];
+
+        $config = array_merge($basicConfig, $clientConfig);
+
+        $this->client = new Client($config);
     }
 
     public function call($method, $endpoint, array $params = [])
@@ -65,7 +68,7 @@ class CachetClient
             throw new CachetTooManyRedirectsException($e->getRequest(), $e->getMessage(), $e->getPrevious(), $e->getResponse());
         }
 
-        if ((is_array($body) && !array_key_exists('data', $body)) && !empty($body)) {
+        if ((is_array($body) && ! array_key_exists('data', $body)) && ! empty($body)) {
             throw new CachetInvalidResponseException($request, $response);
         }
 
