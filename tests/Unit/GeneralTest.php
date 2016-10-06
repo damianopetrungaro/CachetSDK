@@ -29,6 +29,6 @@ class GeneralTest extends \PHPUnit_Framework_TestCase
     {
         $client = ClientFactory::goodClient();
         $generalFactory = GeneralFactory::build($client);
-        $this->assertEquals($generalFactory->version(), ['data' => '2.3.0-dev']);
+        $this->assertEquals($generalFactory->version(), ['data' => '2.3.11-dev']);
     }
 }
